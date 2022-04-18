@@ -13,7 +13,7 @@ import com.empresa.entity.tipoDepartamento;
 import com.empresa.service.TipoDepartamentoService;
 
 
-
+//ee
 @RestController
 @RequestMapping("/rest/tipoDepartamento")
 public class TipoDepartamentoController {
