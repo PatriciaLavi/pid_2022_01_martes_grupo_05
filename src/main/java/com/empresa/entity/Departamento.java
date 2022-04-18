@@ -24,7 +24,6 @@ public class Departamento {
 	@Column  (name="codDepa")
 	private int codDepa;
 	private int codTipoDepa;
-	private int codEdificio;
 	private int piso;
 	private int numHabit;
 	private int numDepa;
