@@ -46,13 +46,7 @@ public class DepartamentoController {
 		return ResponseEntity.ok(salida);
 	}
 	
-	
-	@PostMapping
-	@ResponseBody
-	public ResponseEntity<Departamento> insertaDepartamento(@RequestBody Departamento obj){
-		Departamento objsalida = service.insertaDepartamento(obj);
-		return ResponseEntity.ok(objsalida);
-	}
+
 		
 	
 	
