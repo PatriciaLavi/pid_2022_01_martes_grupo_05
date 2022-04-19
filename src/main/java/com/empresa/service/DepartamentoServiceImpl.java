@@ -18,5 +18,10 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 		// TODO Auto-generated method stub
 		return repository.findAll();
 	}
+	public Departamento insertaDepartamento(Departamento obj) {
+		// TODO Auto-generated method stub
+		return repository.save(obj);
+	}
 	
+
 }

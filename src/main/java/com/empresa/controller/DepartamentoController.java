@@ -26,6 +26,22 @@ public class DepartamentoController {
 	public ResponseEntity<List<Departamento>> listaDepartamento(){
 		return ResponseEntity.ok(service.listarDepartamentos());
 	}
-	
+	@PostMapping
+	@ResponseBody
+	public ResponseEntity<HashMap<String, Object>> insertaDepartamento(@RequestBody Departamento obj){
+		HashMap<String, Object> salida = new HashMap<String, Object>();
+		try {
+			Departamento objSalida = service.insertaDepartamento(obj);
+			if(objSalida==null) {
+				salida.put("MENSAJE", "Error al insertar");
+			}else{
+				salida.put("MENSAJE", "Registro correcto");
+		}
+		}catch (Exception e) {
+			salida.put("MENSAJE", "Error al insertar");
+		} 
+		
+		return ResponseEntity.ok(salida);
+	}
 	
 }
