@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.util.CollectionUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -24,7 +25,8 @@ public class DepartamentoController {
 	@GetMapping
 	@ResponseBody
 	public ResponseEntity<List<Departamento>> listaDepartamento(){
-		return ResponseEntity.ok(service.listarDepartamentos());
+		List<Departamento> lista = service.listarDepartamentos();
+		return ResponseEntity.ok(lista);
 	}
 	@PostMapping
 	@ResponseBody
@@ -43,5 +45,15 @@ public class DepartamentoController {
 		
 		return ResponseEntity.ok(salida);
 	}
+	
+	
+	@PostMapping
+	@ResponseBody
+	public ResponseEntity<Departamento> insertaDepartamento(@RequestBody Departamento obj){
+		Departamento objsalida = service.insertaDepartamento(obj);
+		return ResponseEntity.ok(objsalida);
+	}
+		
+	
 	
 }
