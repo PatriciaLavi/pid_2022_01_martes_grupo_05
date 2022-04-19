@@ -1,7 +1,7 @@
 package com.empresa.service;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,13 +15,34 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 	private DepartamentoRepository repository; 
 	@Override
 	public List<Departamento> listarDepartamentos() {
-		// TODO Auto-generated method stub
+		
 		return repository.findAll();
 	}
 
-	public Departamento insertaDepartamento(Departamento obj) {
-		// TODO Auto-generated method stub
+
+
+	@Override
+	public Departamento insertActulizaDepartamento(Departamento obj) {
+		
 		return repository.save(obj);
+	}
+
+	@Override
+	public List<Departamento> listadepartamentopornum(int numDep) {
+		
+		return repository.findBynumDepa(numDep);
+	}
+
+	@Override
+	public Optional<Departamento> buscaPorCod(int codDepa) {
+		
+		return repository.findById(codDepa);
+	}
+
+	@Override
+	public List<Departamento> listaDepartamentoporCodigodiferentealm(int numDep, int codDepa) {
+		
+		return repository.listaDepartamentoPornrohabDiferente(numDep, codDepa);
 	}
 
 
