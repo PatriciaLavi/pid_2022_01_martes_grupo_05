@@ -17,5 +17,10 @@ public class MascotaServiceImpl implements MascotaService {
 		// TODO Auto-generated method stub
 		return repository.findAll();
 	}
+	@Override
+	public Mascota insertaMascota(Mascota obj) {
+		// TODO Auto-generated method stub
+		return repository.save(obj);
+	}
 
 }
