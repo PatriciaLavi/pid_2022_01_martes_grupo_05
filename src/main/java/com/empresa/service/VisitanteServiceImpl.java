@@ -18,5 +18,11 @@ public class VisitanteServiceImpl implements VisitanteService {
 		// TODO Auto-generated method stub
 		return repository.findAll();
 	}
+	@Override
+	public Visitantes insertaVisitante(Visitantes obj) {
+		// TODO Auto-generated method stub
+		return repository.save(obj);
+	}
+	
 
 }

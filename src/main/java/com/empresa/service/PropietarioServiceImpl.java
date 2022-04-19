@@ -16,5 +16,10 @@ public class PropietarioServiceImpl implements PropietarioService {
 		// TODO Auto-generated method stub
 		return repository.findAll();
 	}
+		@Override
+		public Propietarios insertaPropietario(Propietarios obj) {
+			// TODO Auto-generated method stub
+			return repository.save(obj);
+		}
 
 }

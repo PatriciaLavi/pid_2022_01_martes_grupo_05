@@ -15,7 +15,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.empresa.entity.Departamento;
 import com.empresa.service.DepartamentoService;
-//asdasd
 
 @Controller
 @RequestMapping("/rest/departamento")
