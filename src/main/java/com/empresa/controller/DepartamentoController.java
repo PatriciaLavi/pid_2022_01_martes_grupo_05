@@ -26,7 +26,7 @@ public class DepartamentoController {
 	public ResponseEntity<List<Departamento>> listaDepartamento(){
 		List<Departamento> lista = service.listarDepartamentos();
 		return ResponseEntity.ok(lista);
-	}
+	}//a
 	@PostMapping
 	@ResponseBody
 	public ResponseEntity<HashMap<String, Object>> insertaDepartamento(@RequestBody Departamento obj){
