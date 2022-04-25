@@ -28,6 +28,7 @@ public class Departamento {
 	private int numHabit;
 	private int numDepa;
 	private int metros;
+
 	
 
 }

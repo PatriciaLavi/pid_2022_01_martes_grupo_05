@@ -9,19 +9,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.empresa.entity.Admin;
-import com.empresa.service.AdminService;
+import com.empresa.entity.Usuario;
+import com.empresa.service.UsuarioService;
 
 
 
 @RestController
 @RequestMapping("/rest/admin")
-public class AdminController {
+public class UsuarioController {
 	@Autowired
-	private AdminService service;
+	private UsuarioService service;
 	@GetMapping
 	@ResponseBody
-	public ResponseEntity<List<Admin>> listarAdmins(){
+	public ResponseEntity<List<Usuario>> listarAdmins(){
 		return ResponseEntity.ok(service.ListarAdmin());
 	}
 

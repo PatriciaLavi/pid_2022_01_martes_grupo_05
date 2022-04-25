@@ -27,67 +27,31 @@ public class DepartamentoController {
 	@GetMapping
 	@ResponseBody
 	public ResponseEntity<List<Departamento>> listaDepartamento(){
-		List<Departamento> lista = service.listarDepartamentos();
+		List<Departamento> lista = service.listaDepartamento();
 		return ResponseEntity.ok(lista);
 	}
 	@PostMapping
 	@ResponseBody
 	public ResponseEntity<HashMap<String, Object>> insertaDepartamento(@RequestBody Departamento obj){
-		HashMap<String, Object> salida = new HashMap<String, Object>();
+		HashMap<String, Object> salida = new HashMap<>();
 		try {
-			List<Departamento> lstDepartamento = service.listadepartamentopornum(obj.getNumDepa());
-			if(CollectionUtils.isEmpty(lstDepartamento)) {
-				obj.setCodDepa(0);
-				Departamento objsalida=service.insertActulizaDepartamento(obj);		
-			if(objsalida==null) {
+			obj.setCodDepa(0);
+			Departamento objsalida=service.insertaDepartamento(obj);
+			if(objsalida == null) {
 				salida.put("MENSAJE", "Error al insertar");
 			}else{
-				salida.put("MENSAJE", "Registro correcto");
-		}
-		}else {
-			salida.put("mensaje", "el nro" + obj.getNumDepa() + "ya existe");
-		}
-		}
+				salida.put("MENSAJE", "Registro correctamente");
+		
+		
+		}}
 			catch (Exception e) {
-			salida.put("MENSAJE", "Error al insertar");
+				e.printStackTrace();
+			salida.put("MENSAJE", "No se registro correctamente");
 		} 
 		
 		return ResponseEntity.ok(salida);
 	}
 	
-
-	@PutMapping
-	@ResponseBody
-	public ResponseEntity<HashMap<String, Object>> actualizaDepartamento(@RequestBody Departamento obj){
-		HashMap<String, Object> salida=new HashMap<String, Object>();
-		try {
-			Optional<Departamento> optional= service.buscaPorCod(obj.getCodDepa());
-	        if(optional.isEmpty()) {
-		salida.put("mensaje", "No existe Departamento de COD:" + obj.getCodDepa());
-		
-		}else {
-			List<Departamento> lstDepartamento=service.listaDepartamentoporCodigodiferentealm(obj.getNumDepa(), obj.getCodDepa());
-			if(CollectionUtils.isEmpty(lstDepartamento)) {
-				Departamento objsalida=service.insertActulizaDepartamento(obj);
-				if(objsalida==null) {
-					
-					salida.put("mensaje", "error al actualizar");				
-				}else {
-					salida.put("mensaje", "Se actualizo correctamente");
-				}}else {
-			salida.put("mensaje", "El Nro de Departamento"+ obj.getNumDepa() +" ya existe.");
-		}
-	}			
-		} catch (Exception e) {
-			e.printStackTrace();
-			salida.put("mensaje", "error en actualizar");
-		}
-	
-	return ResponseEntity.ok(salida);
-	
-	
-	
-}
 
 	
 	
