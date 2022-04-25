@@ -6,17 +6,17 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.empresa.entity.Admin;
-import com.empresa.repository.AdminRepository;
+import com.empresa.entity.Usuario;
+import com.empresa.repository.UsuarioRepository;
 
 
 @Service
-public class AdminServiceImpl implements AdminService {
+public class UsuarioServiceImpl implements UsuarioService {
 
 	@Autowired
-	private AdminRepository repository;
+	private UsuarioRepository repository;
 	@Override
-	public List<Admin> ListarAdmin() {
+	public List<Usuario> ListarAdmin() {
 		// TODO Auto-generated method stub
 		return repository.findAll();
 	}

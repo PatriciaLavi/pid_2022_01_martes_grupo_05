@@ -26,6 +26,7 @@ public class Visitantes {
 	@Column  (name="codVisitante")
 	private int codVisitante;
 	private int codDepa;
+	private int codUsu;
 	private String nomVisitante; 
 	private String apeVisitante;
 	private String dniVisitante; 

@@ -7,6 +7,5 @@ import com.empresa.entity.Departamento;
 
 public interface DepartamentoRepository extends JpaRepository<Departamento, Integer> {
 	
-	public abstract Departamento insertaDepartamento(Departamento obj);
 	
 }

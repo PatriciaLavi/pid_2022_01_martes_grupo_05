@@ -13,22 +13,23 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "tbadmin")
+@Table(name = "tbusuario")
 @Getter
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
-public class Admin {
+public class Usuario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY )
-	@Column(name="codAdmin")
-	private int codAdmin;
-	private String nomAdmin;
-	private String apeAdmin;
-	private String dniAdmin;
+	@Column(name="codUsu")
+	private int codUsu;
+	private String nomUsu;
+	private String apeUsu;
+	private String dniUsu;
 	private String telefono;
 	private int edad;
 	private int genero;
 	private int estCivil; 
 	private String correo;
+	private String contraseña;
 }

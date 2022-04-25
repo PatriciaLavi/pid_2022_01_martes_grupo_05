@@ -26,6 +26,7 @@ public class Propietarios {
 	@Column (name="codPropietario")
 	private int codPropietario; 
 	private int codDepa; 
+	private int codUsu; 
 	private String nomPropietario;
 	private String apePropietario; 
 	private String dniPropietario; 
