@@ -8,7 +8,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 
 import org.springframework.util.CollectionUtils;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,6 +19,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.empresa.entity.Departamento;
+import com.empresa.entity.Propietarios;
 import com.empresa.service.DepartamentoService;
 
 @RestController
@@ -36,7 +39,7 @@ public class DepartamentoController {
 		HashMap<String, Object> salida = new HashMap<>();
 		try {
 			obj.setCodDepa(0);
-			Departamento objsalida=service.insertaDepartamento(obj);
+			Departamento objsalida=service.actualizaDepartamento(obj);
 			if(objsalida == null) {
 				salida.put("MENSAJE", "Error al insertar");
 			}else{
@@ -52,7 +55,51 @@ public class DepartamentoController {
 		return ResponseEntity.ok(salida);
 	}
 	
+//
+	@PutMapping
+	@ResponseBody
+	public ResponseEntity<HashMap<String, Object>> actualizaDepartamento(@RequestBody Departamento obj){
+		HashMap<String, Object> salida = new HashMap<String, Object>();
+		try {
+			Optional<Departamento> optional = service.buscaPorcod(obj.getCodDepa());
+			if (optional.isEmpty()) {
+				salida.put("mensaje", "No existe cod de departamento  : " + obj.getCodDepa());
+			}else {
+				Departamento objSalida = service.actualizaDepartamento(obj);
+				if (objSalida == null) {
+					salida.put("mensaje", "Error en actualizar");
+				}else {
+					salida.put("mensaje", "Se actualizó correctamente");
+				}
+			}
+					
+		} catch (Exception e) {
+			e.printStackTrace();
+			salida.put("mensaje", "Error en actualizar");
+		}
+		return ResponseEntity.ok(salida);
+	}
+	
+	@DeleteMapping("/{cod}")
+	@ResponseBody
+	public ResponseEntity<HashMap<String, Object>>eliminaDepartamento(@PathVariable("cod") int codDepartamento){
+		HashMap<String, Object> salida = new HashMap<String, Object>();
+		Optional<Departamento>optional=service.buscaPorcod(codDepartamento);
+		if(optional.isPresent()) {
+			service.eliminaPorCod(codDepartamento);
+			salida.put("mensaje", "se elimino correctamente");			
+		}else {
+			salida.put("mensaje", "No existe el cod:" +codDepartamento);
+		}
+		return ResponseEntity.ok(salida);
+	}
 
+	
+	
+	
+	
+	
+	
 	
 	
 }

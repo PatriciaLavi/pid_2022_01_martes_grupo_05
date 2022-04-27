@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.empresa.entity.Departamento;
+import com.empresa.entity.Propietarios;
 import com.empresa.repository.DepartamentoRepository;
 
 @Service
@@ -18,9 +19,35 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 
 
+	
+
+
+
+
 	@Override
-	public Departamento insertaDepartamento(Departamento obj) {
-		// TODO Auto-generated method stub
+	public List<Departamento> listaDepartamento() {
+		
+		return repository.findAll();
+	}
+ 
+	@Override
+	public Optional<Departamento> buscaPorcod(int codDepartamento) {
+		
+		return repository.findById(codDepartamento);
+	}
+
+	@Override
+	public void eliminaPorCod(int codDepartamento) {
+		repository.deleteById(codDepartamento);
+		
+	}
+
+
+
+
+	@Override
+	public Departamento insetaDepartamento(Departamento obj) {
+		
 		return repository.save(obj);
 	}
 
@@ -29,10 +56,25 @@ public class DepartamentoServiceImpl implements DepartamentoService {
 
 
 	@Override
-	public List<Departamento> listaDepartamento() {
-		// TODO Auto-generated method stub
-		return repository.findAll();
+	public Departamento actualizaDepartamento(Departamento obj) {
+		
+		return repository.save(obj);
 	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
