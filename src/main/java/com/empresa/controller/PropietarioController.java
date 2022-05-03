@@ -1,55 +1,89 @@
 package com.empresa.controller;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
-import com.empresa.entity.Departamento;
-import com.empresa.entity.Propietarios;
-import com.empresa.service.DepartamentoService;
+import com.empresa.entity.Propietario;
+import com.empresa.entity.Residente;
+import com.empresa.entity.visitante;
 import com.empresa.service.PropietarioService;
+import com.empresa.service.ResidenteService;
 
-@RestController
-@RequestMapping("/rest/propietario")
+@Controller
+@RequestMapping("/views/Propietario/")
 public class PropietarioController {
 	@Autowired
-	private PropietarioService service;
-	@GetMapping
-	@ResponseBody
-	public ResponseEntity<List<Propietarios>> listarPropietarios(){
-		List<Propietarios> lista = service.ListarPropietario();
-		return ResponseEntity.ok(lista);
-	}
+	private PropietarioService propietarioService;
 	
-	
-	@PostMapping
-	@ResponseBody
-	public ResponseEntity<HashMap<String, Object>> insertaPropietario(@RequestBody Propietarios obj){
-		HashMap<String, Object> salida = new HashMap<String, Object>();
-		try {
-			Propietarios objSalida = service.insertaPropietario(obj);
-			if(objSalida==null) {
-				salida.put("MENSAJE", "Error al insertar");
-			}else{
-				salida.put("MENSAJE", "Registro correcto");
-		}
-		}catch (Exception e) {
-			salida.put("MENSAJE", "Error al insertar");
-		} 
+	@GetMapping("/")
+	public String listarpropietarios(Model model) {
+		List<Propietario> lstprop = propietarioService.listarPropietarios();
 		
-		return ResponseEntity.ok(salida);
+		model.addAttribute("titulo","Lista de propietarios");
+		model.addAttribute("propietario",lstprop );
+		return "/views/Propietario/listar";
 	}
+
+	@GetMapping("/registrar")
+	public String registrar(Model model) {
+		
+		Propietario propietario = new Propietario();
+		model.addAttribute("propietario", propietario);
+		
+		return "/views/Propietario/registrar";
+	}
+	
+	@PostMapping("/save")
+	public String guardar(@ModelAttribute Propietario propietario) {
+		
+		
+		
+		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
+		
+		propietario.setFechaReg(fecha);
+		propietario.setEstado(1);
+		
+		propietarioService.insertaActualizaPropietario(propietario);
+		System.out.println("Propietario guardado Exitosamente");
+		return "redirect:/views/Propietario/";
+	}
+	
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable ("id") Integer idPropietario ,Model model) {
+		
+		Propietario propietario = propietarioService.buscarPorIdPropietario(idPropietario);
+		
+		model.addAttribute("propietario", propietario);
+		
+		return "/views/propietario/registrar";
+	}
+
+	@GetMapping("/delete/{id}")
+	public String eliminar(@PathVariable ("id") Integer idPropietario) {
+		
+		propietarioService.eliminar(idPropietario);
+		System.out.println("Propietario eliminado exitosamente");
+		
+		return "redirect:/views/Propietario/";
+	}
+
 
 }
 
-
-	
-	

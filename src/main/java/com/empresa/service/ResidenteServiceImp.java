@@ -1,36 +1,36 @@
 package com.empresa.service;
 
 import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import com.empresa.entity.Mascota;
-
-import com.empresa.repository.MascotaRepository;
+import com.empresa.entity.Residente;
+import com.empresa.repository.ResidenteRepository;
 
 
 @Service
-public class MascotaServiceImpl implements MascotaService {
+public class ResidenteServiceImp implements ResidenteService{
 	@Autowired
-	private MascotaRepository repository;
+	private ResidenteRepository repository;
+
 	@Override
-	public List<Mascota> listarMascota() {
+	public List<Residente> listarResidentes() {
 		return repository.findAll();
 	}
+
 	@Override
-	public Mascota insertaActualizaMascota(Mascota obj) {
+	public Residente insertaActualizaResidente(Residente obj) {
 		return repository.save(obj);
 	}
+
 	@Override
-	public Mascota buscarPorIdMascota(Integer id) {
+	public Residente buscarPorIdResidente(Integer id) {
 		return repository.findById(id).orElse(null);
 	}
 	@Override
 	public void eliminar(Integer id) {
-		repository.deleteById(id);	
+		repository.deleteById(id);
+		
 	}	
+	
 }
-
-
-
+	

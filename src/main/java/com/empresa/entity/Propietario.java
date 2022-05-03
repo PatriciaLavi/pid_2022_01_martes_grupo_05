@@ -1,10 +1,8 @@
 package com.empresa.entity;
 
-import java.io.Serializable;
 import java.util.Date;
-
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue; 
+import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
@@ -19,39 +17,26 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
-
 @Entity
-@Table (name="mascota")
+@Table (name="propietario")
 @Getter
 @Setter
 @ToString
-@AllArgsConstructor
-@NoArgsConstructor
-public class Mascota implements Serializable {
-	private static final long serialVersionUID = 1L;
+public class Propietario {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idMascota;
+    private int idPropietario;
 	private String nombre;
-	private String edad;
-	private String tipo;
-	private String raza;
-	private String vacunacion;
+	private String apellidos;
+	private String dni;
+	private String correo;
+	private int telefono;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	private Date fechareg;
+	private Date fechaNac;
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date fechaReg;
 	private int estado;
-	
-	
+
 }
-
-
-
-
-
-
-
-
-
-
-
