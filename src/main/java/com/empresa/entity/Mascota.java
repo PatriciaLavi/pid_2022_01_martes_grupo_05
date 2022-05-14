@@ -32,6 +32,7 @@ public class Mascota implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idMascota;
+	private int idpropietario;
 	private String nombre;
 	private String edad;
 	private String tipo;
@@ -41,7 +42,6 @@ public class Mascota implements Serializable {
 	@Temporal(TemporalType.DATE)
 	private Date fechareg;
 	private int estado;
-	
 	
 }
 

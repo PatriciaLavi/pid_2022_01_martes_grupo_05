@@ -18,14 +18,13 @@
 			th:text="'Nueva Mascota'" title="Crear Nueva Mascota">
 			
 		</a>
-		
-		
-		
+			
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">ID Mascota</th>
-					<th scope="col">Nombre Mascota</th>
+					<th scope="col">ID Mascota</th>		
+					<th scope="col">Codigo de Propietario</th>			
+					<th scope="col">Nombre Mascota</th>				
 					<th scope="col">Edad Mascota</th>
 					<th scope="col">Tipo de Mascota</th>
 					<th scope="col">Raza Animal</th>
@@ -34,14 +33,15 @@
 					<th scope="col">estado de Mascota</th>
 					<th scope="col">Editar </th>
 					<th scope="col">Eliminar</th>
-					
-					
+								
 				</tr>
 			</thead>
 			<tbody>
 				<tr th:each="cl:${mascota}">
+			
 					<td th:text="${cl.idMascota}"></td>
-					<td th:text="${cl.nombre}"></td>
+		            <td th:text="${cl.idpropietario}"></td>
+					<td th:text="${cl.nombre}"></td>					
 					<td th:text="${cl.edad}"></td>
 					<td th:text="${cl.tipo}"></td>
 					<td th:text="${cl.raza}"></td>
@@ -59,7 +59,8 @@
 							th:text="'Eliminar'" title="Eliminar Mascota"
 							onclick="return confirm('Esta seguro de eliminar el registro?');">
 						</a>
-					</td>					
+					</td>	
+							
 				</tr>
 			</tbody>
 		</table>

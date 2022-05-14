@@ -30,15 +30,11 @@
 					<th scope="col">apellidos</th>
 					<th scope="col">dni</th>
 					<th scope="col">Correo</th>
-					<th scope="col">ID Mascota</th>
 					<th scope="col">Telefono</th>
 					<th scope="col">Fecha de Nacimiento</th>
 					<th scope="col">fechaReg</th>
-					<th scope="col">estado</th>
-					<th scope="col">Editar </th>
-					<th scope="col">Eliminar</th>
-					
-					
+					<th scope="col">estado</th>		
+							
 				</tr>
 			</thead>
 			<tbody>
@@ -48,24 +44,14 @@
 					<td th:text="${cl.nombre}"></td>
 					<td th:text="${cl.apellidos}"></td>
 					<td th:text="${cl.dni}"></td>
-					<td th:text="${cl.correo}"></td>
-					<td th:text="${cl.idmascota}"></td>
+					<td th:text="${cl.correo}"></td>					
 					<td th:text="${cl.telefono}"></td>
 					<td th:text="${cl.fechaNac}"></td>
 					<td th:text="${cl.fechaReg}"></td>
 					<td th:text="${cl.estado}"></td>
 						
-					<td>
-						<a class="btn btn-success btn-sm" th:href="@{/views/Residente/edit/} + ${cl.idResidente}"
-							th:text="'Editar'" title="Editar Visita">
-						</a>
-					</td>	
-					<td>
-						<a class="btn btn-danger btn-sm" th:href="@{/views/Residente/delete/} + ${cl.idResidente}"
-							th:text="'Eliminar'" title="Eliminar Residente"
-							onclick="return confirm('Esta seguro de eliminar el registro?');">
-						</a>
-					</td>					
+						
+									
 				</tr>
 			</tbody>
 		</table>

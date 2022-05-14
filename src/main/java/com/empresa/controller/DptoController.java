@@ -10,12 +10,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-
 import com.empresa.entity.Departamento;
 import com.empresa.service.DepartamentoService;
-
-
-
 
 @Controller
 @RequestMapping("/views/departamentos/")
@@ -36,11 +32,8 @@ public class DptoController {
 	
 	@GetMapping("/registrar")
 	public String registrar(Model model) {
-		
 		Departamento departamento = new Departamento();
-		
 		model.addAttribute("departamento", departamento);
-		
 		return "/views/departamentos/registrar";
 	}
 	

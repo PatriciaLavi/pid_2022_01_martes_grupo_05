@@ -30,13 +30,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.antMatchers("/index", "/home", "/", "/css/**", "/js/**", "/images/**").permitAll()
-				/*
-				 * .antMatchers("/views/vistante/").hasAnyRole("USER")
-				 * .antMatchers("/views/vistante/registrar").hasAnyRole("USER")
-				 * .antMatchers("/views/vistante/save").hasAnyRole("USER")
-				 * .antMatchers("/views/vistante/edit/**").hasAnyRole("ADMIN")
-				 * .antMatchers("/views/vistante/delete/**").hasAnyRole("ADMIN")
-				 */
+				
 				.anyRequest().authenticated()
 				.and().formLogin()
 				 	.successHandler(message)

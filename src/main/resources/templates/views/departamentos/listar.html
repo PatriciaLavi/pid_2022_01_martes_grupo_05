@@ -32,16 +32,15 @@
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">Id</th>
+					
 					<th scope="col">IdDepartamento</th>
 					<th scope="col">IdPropietario</th>
-					<th scope="col">Piso</th>
+					<th scope="col">Nro departamento</th>
 					<th scope="col">Habitaciones</th>
 					<th scope="col">Area</th>
 					<th scope="col">Baños</th>
 					<th scope="col">Fecha Registro</th>
 					<th scope="col">Estado</th>
-					<!--<th scope="col">Activo</th>-->
 					<th scope="col">Editar</th>
 					<th scope="col">Eliminar</th>
 				</tr>
@@ -51,13 +50,13 @@
 					
 					<td th:text="${d.iddepartamento}"></td>
 					<td th:text="${d.idpropietario}"></td>
-					<td th:text="${d.numpiso}"></td>
+					<td th:text="${d.numdepartamento}"></td>
 					<td th:text="${d.habitaciones}"></td>
-					<td th:text="${d.cocinas}"></td>
+					<td th:text="${d.area}"></td>
 					<td th:text="${d.banos}"></td>
 					<td th:text="${d.fechareg}"></td>
 					<td th:text="${d.estado}"></td>
-					<td th:text="${d.activo}"></td>
+					
 					<td>
 						<a class="btn btn-success btn-sm" th:href="@{/views/departamentos/edit/} + ${d.iddepartamento}"
 							th:text="'Editar'" title="Editar Registro">

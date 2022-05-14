@@ -27,7 +27,6 @@ public class Residente {
 	private String apellidos;
 	private String dni;
 	private String correo;
-	private int idmascota;;
 	private int telefono;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)

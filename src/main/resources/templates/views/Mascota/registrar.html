@@ -22,10 +22,20 @@
 						
 						<div class="form-group row">
 						<label
+							class="col-md-2" for="idpropietario">IdPropietario:</label> <input
+							type="text" th:field="*{idpropietario}"
+							class="form-control form-control-sm col-md-6" id="idpropietario"
+							placeholder="Id del Propietario"> <small
+							class="form-text text-danger"
+							th:if="${#fields.hasErrors('idpropietario')}" th:errors="*{idpropietario}">
+						</small>
+					</div>
+						
+						<label
 							class="col-md-2" for="nombre">Nombre:</label> <input
 							type="text" th:field="*{nombre}"
 							class="form-control form-control-sm col-md-6" id="nombre"
-							placeholder="Nombres del visitante"> <small
+							placeholder="Nombres del mascota"> <small
 							class="form-text text-danger"
 							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
 						</small>
