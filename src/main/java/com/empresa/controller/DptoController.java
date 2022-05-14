@@ -16,7 +16,7 @@ import com.empresa.service.DepartamentoService;
 @Controller
 @RequestMapping("/views/departamentos/")
 public class DptoController {
-	
+	//aut
 	@Autowired
 	private DepartamentoService departamentoService;
 	
