@@ -22,6 +22,8 @@
 						<label
 							class="col-md-2" for="nombre">Nombres:</label> <input
 							type="text" th:field="*{nombre}"
+							required=""
+							pattern="[a-zA-Z]+"
 							class="form-control form-control-sm col-md-6" id="nombre"
 							placeholder="Nombres del visitante"> <small
 							class="form-text text-danger"
@@ -32,6 +34,8 @@
 					<div class="form-group row">
 						<label class="col-md-2" for="apellidos">Apellidos:</label> <input
 							type="text" th:field="*{apellidos}"
+							required=""
+							pattern="[a-zA-Z]+"
 							class="form-control form-control-sm col-md-6" id="apellidos"
 							placeholder="Apellidos del visitante"> <small
 							class="form-text text-danger"
@@ -41,7 +45,9 @@
 
 					<div class="form-group row">
 						<label class="col-md-2" for="dni">Dni</label> <input
-							type="number" th:field="*{dni}"
+							type="text" th:field="*{dni}"
+							required=""
+							pattern="[0-9]{9}"
 							class="form-control form-control-sm col-md-6" id="dni"
 							placeholder="dni del visitante"> <small
 							class="form-text text-danger"
@@ -52,6 +58,8 @@
 	                <div class="form-group row">
 						<label class="col-md-2" for="correo">Correo</label> <input
 							type="text" th:field="*{correo}"
+							required=""
+							pattern="[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*@[a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{1,5}"
 							class="form-control form-control-sm col-md-6" id="correo"
 							placeholder="correo del visitante"> <small
 							class="form-text text-danger"
@@ -63,6 +71,7 @@
 					    <div class="form-group row">
 						<label class="col-md-2" for="fechaNac">Fecha de Nacimiento</label> <input
 							type="date" th:field="*{fechaNac}"
+							required=""
 							class="form-control form-control-sm col-md-6" id="fechaNac"
 							placeholder="fecha de nacimiento residente "> <small
 							class="form-text text-danger"
@@ -73,6 +82,8 @@
 					   <div class="form-group row">
 						<label class="col-md-2" for="telefono">Telefono</label> <input
 							type="text" th:field="*{telefono}"
+							required=""
+							pattern="[0-9]{9}"
 							class="form-control form-control-sm col-md-6" id="telefono"
 							placeholder="Nro de Telefono residente "> <small
 							class="form-text text-danger"
