@@ -27,7 +27,7 @@
 						<label class="col-md-2" for="iddepartamento">Propietario :</label> <input
 							type="text" th:field="*{idpropietario}"
 							class="form-control form-control-sm col-md-6" id="idpropietario"
-							placeholder="Ingrese Id departamento"> <small
+							placeholder="Ingrese Id propietario"> <small
 							class="form-text text-danger"
 							th:if="${#fields.hasErrors('idpropietario')}"
 							th:errors="*{idpropietario}"> </small>
@@ -38,7 +38,7 @@
 							class="col-md-2" for="numdepartamento">numdepartamento:</label> <input
 							type="text" th:field="*{numdepartamento}"
 							class="form-control form-control-sm col-md-6" id="numdepartamento"
-							placeholder="Nombres del residente"> <small
+							placeholder="Nro de departamento"> <small
 							class="form-text text-danger"
 							th:if="${#fields.hasErrors('numdepartamento')}" th:errors="*{numdepartamento}">
 						</small>
@@ -48,7 +48,7 @@
 						<label class="col-md-2" for="habitaciones">habitaciones:</label> <input
 							type="text" th:field="*{habitaciones}"
 							class="form-control form-control-sm col-md-6" id="habitaciones"
-							placeholder="Apellidos del residente"> <small
+							placeholder="Habitacion de Departamento"> <small
 							class="form-text text-danger"
 							th:if="${#fields.hasErrors('habitaciones')}"
 							th:errors="*{habitaciones}"> </small>
@@ -56,7 +56,7 @@
 
 					<div class="form-group row">
 						<label class="col-md-2" for="area">area</label> <input
-							type="number" th:field="*{area}"
+							type="text" th:field="*{area}"
 							class="form-control form-control-sm col-md-6" id="area"
 							placeholder="dni del residente"> <small
 							class="form-text text-danger"
@@ -65,7 +65,7 @@
 					</div>
 					<div class="form-group row">
 						<label class="col-md-2" for="banos">banos</label> <input
-							type="number" th:field="*{banos}"
+							type="text" th:field="*{banos}"
 							class="form-control form-control-sm col-md-6" id="banos"
 							placeholder="dni del residente"> <small
 							class="form-text text-danger"
