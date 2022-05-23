@@ -39,7 +39,7 @@ public class PropietarioController {
 		model.addAttribute("propietario",lstprop );
 		return "/views/Propietario/listar";
 	}
-
+//
 	@GetMapping("/registrar")
 	public String registrar(Model model) {
 		
