@@ -44,5 +44,6 @@ public class visita implements Serializable{
 	@DateTimeFormat(pattern = "yyyy-mm-dd hh-mm-ss")
 	@Temporal(TemporalType.DATE)
 	private Date fechahorasalida;
+	private String comentario;
 	
 }

@@ -69,11 +69,19 @@ public class visitaController {
 	public String editar(@PathVariable ("id") Integer idvisita ,Model model,@ModelAttribute visita obj) {
 		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
+		obj.setFechahorasalida(fecha);
 		visita visita= service.buscarPorIdvisita(idvisita);
 		model.addAttribute("visita", visita);
+		//a
+		return "/views/visita/actualizar";
+	}
+	@PostMapping("/update")
+	public String Terminarvisista(@ModelAttribute visita obj) {
+		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
 		obj.setFechahorasalida(fecha);
-		
-		return "/views/visita/registrar";
+		service.insertaActualizaVistas(obj);
+		return "redirect:/views/visita/";
 	}
 	
 }

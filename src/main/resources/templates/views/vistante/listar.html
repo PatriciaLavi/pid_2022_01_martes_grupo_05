@@ -24,11 +24,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 					<th scope="col">Id</th>
 					<th scope="col">Nombres</th>
 					<th scope="col">Apellidos</th>
-					<th scope="col">Fecha Nacimiento</th>
 					<th scope="col">Dni</th>
 					<th scope="col">Correo</th>
 					<th scope="col">Telefono</th>
-					<th scope="col">Fecha Registro</th>
 					<th scope="col">Estado</th>
 					<th scope="col" sec:authorize="hasRole('ROLE_GERENTE')">Editar</th>
 					<th scope="col" sec:authorize="hasRole('ROLE_ADMIN')">Eliminar</th>
@@ -39,11 +37,9 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 					<th scope="row" th:text="${cl.idvisitante}"></th>
 					<td th:text="${cl.nombre}"></td>
 					<td th:text="${cl.apellidos}"></td>
-					<td th:text="${cl.fechanac}"></td>
 					<td th:text="${cl.dni}"></td>
 					<td th:text="${cl.correo}"></td>
 					<td th:text="${cl.telefono}"></td>
-					<td th:text="${cl.fechareg}"></td>
 					<td th:text="${cl.activo}"></td>	
 					<td sec:authorize="hasRole('ROLE_GERENTE')">
 						<a class="btn btn-success btn-sm" th:href="@{/views/vistante/edit/} + ${cl.idvisitante}"
