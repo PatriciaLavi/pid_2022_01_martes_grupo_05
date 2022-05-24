@@ -8,54 +8,49 @@
 		
 		</div>
 	<div class="container">		
-		<h1 th:text="${titulo}"></h1>	
+		<h1 style="color:rgb(0, 128, 128);">VISITAS</h1>	
 	</div>
 	
 	<div class="container">
 		
 		
 		<a class="btn btn-primary btn-sm" th:href="@{/views/visita/registrar}"
-			th:text="'Nuevo Residente'" title="Crear Nuevo Residente">
+			th:text="'Nueva Visita'" title="Crear Nueva Visita">
 			
 		</a>
 			
 		<table class="table">
 			<thead class="thead-dark">
 				<tr>
-					<th scope="col">ID Residente</th>		
-					<th scope="col">ID Departamento</th>			
-					<th scope="col">Nombre de Visita</th>				
-					<th scope="col">Apellidos</th>
+						
+					<th scope="col">ID Visita</th>			
+					<th scope="col">ID Visitante</th>				
 					<th scope="col">Dni</th>
-					<th scope="col">Correo</th>
-					<th scope="col">Telefono</th>
-					<th scope="col">fecha Nacimiento</th>
-					<th scope="col">estado de Visita</th>
+					<th scope="col">ID Residente</th>
+					<th scope="col">fechaHora Entrada</th>
+					<th scope="col">FechaHORA Salida</th>
 					<th scope="col">Editar </th>
 					<th scope="col">Eliminar</th>
 								
 				</tr>
 			</thead>
 			<tbody>
-				<tr th:each="cl:${mascota}">
+				<tr th:each="cl:${visita}">
 			
-					<td th:text="${cl.idMascota}"></td>
-		            <td th:text="${cl.idpropietario}"></td>
-					<td th:text="${cl.nombre}"></td>					
-					<td th:text="${cl.edad}"></td>
-					<td th:text="${cl.tipo}"></td>
-					<td th:text="${cl.raza}"></td>
-					<td th:text="${cl.vacunacion}"></td>
-					<td th:text="${cl.fechareg}"></td>
-					<td th:text="${cl.estado}"></td>
-						
+					<td th:text="${cl.idvisita}"></td>
+		            <td th:text="${cl.idvisitante}"></td>
+					<td th:text="${cl.dni}"></td>					
+					<td th:text="${cl.idresidente}"></td>
+					<td th:text="${cl.fechahoraentrada}"></td>
+					<td th:text="${cl.fechahorasalida}"></td>
+				
 					<td>
-						<a class="btn btn-success btn-sm" th:href="@{/views/Mascota/edit/} + ${cl.idMascota}"
+						<a class="btn btn-success btn-sm" th:href="@{/views/visita/edit/} + ${cl.idvisita}"
 							th:text="'Editar'" title="Editar Visita">
 						</a>
 					</td>	
 					<td>
-						<a class="btn btn-danger btn-sm" th:href="@{/views/Mascota/delete/} + ${cl.idMascota}"
+						<a class="btn btn-danger btn-sm" th:href="@{/views/visita/delete/} + ${cl.idvisita}"
 							th:text="'Eliminar'" title="Eliminar Mascota"
 							onclick="return confirm('Esta seguro de eliminar el registro?');">
 						</a>

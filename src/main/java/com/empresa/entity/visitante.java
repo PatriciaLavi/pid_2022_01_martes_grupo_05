@@ -30,35 +30,15 @@ import lombok.ToString;
 @NoArgsConstructor
 public class visitante implements Serializable{
 
-	/**
-	 * 
-	 */
 	private static final long serialVersionUID = 1L;
-
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idvisitante;
-	
-	
-	private String nombre ;
-	private String apellidos ;
-	
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date fechanac;
-	private int dni; 
-	private String correo;
+	private String nombre;
+	private String apellido;
+	private String dni;
 	private String telefono;
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date  fechareg  ;
-	private int activo;
+	private String activo;
 
-	
-
-	
-	
-	
-	
 }

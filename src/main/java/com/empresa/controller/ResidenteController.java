@@ -55,8 +55,6 @@ public class ResidenteController {
 	@PostMapping("/save")
 	public String guardar(@ModelAttribute Residente residente) {
 		
-		
-		
 		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
 		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
 		

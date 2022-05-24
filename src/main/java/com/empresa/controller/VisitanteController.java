@@ -46,8 +46,7 @@ public class VisitanteController {
 	@Secured("ROLE_USER")
 	@PostMapping("/save")
 	public String Guardar(@ModelAttribute visitante obj) {	
-		obj.setActivo(1);
-		obj.setFechareg(new Date());
+		obj.setActivo("Activo");
 		service.insertaActualizaVistante(obj);
 		return "redirect:/views/vistante/";
 	}
@@ -69,7 +68,7 @@ public class VisitanteController {
 	public String eliminar(@PathVariable ("id") Integer id) {
 		
 		visitante visit=service.buscarPorId(id);
-		visit.setActivo(0);
+		visit.setActivo("Dentro");
 		service.insertaActualizaVistante(visit);
 		return "redirect:/views/vistante/";
 	}
