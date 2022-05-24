@@ -72,7 +72,7 @@ public class visitaController {
 		obj.setFechahorasalida(fecha);
 		visita visita= service.buscarPorIdvisita(idvisita);
 		model.addAttribute("visita", visita);
-		
+		//a
 		return "/views/visita/actualizar";
 	}
 	@PostMapping("/update")
