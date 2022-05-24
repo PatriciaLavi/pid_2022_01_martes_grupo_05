@@ -24,4 +24,17 @@ public class visitaServiceImpl implements visitaService {
 		return repository.findAll();
 	}
 
+	@Override
+	public visita buscarPorIdvisita(Integer id) {
+		// TODO Auto-generated method stub
+		return repository.findById(id).orElse(null);
+	}
+
+	
+
+
+	
+
+	
+
 }

@@ -26,26 +26,23 @@ import lombok.ToString;
 @Setter
 @ToString 
 public class visita implements Serializable{
-	/**
-	 * 
-	 */
+	
 	private static final long serialVersionUID = 1L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private Long idvisita ;
+	private int idvisita;
+	private int idvisitante;
+	private String dni;
+	private int idresidente;
+
+	@DateTimeFormat(pattern = "yyyy-mm-dd hh-mm-ss")
+	@Temporal(TemporalType.DATE)
+	private Date fechahoraentrada;
+
 	
-	@ManyToOne
-	@JoinColumn(name = "idvisitante")
-	private visitante idvisitante ; 
-	
-	private int idresidente ; 
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date horaentrada ; 
-	
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date horasalida ;
-	
+	@DateTimeFormat(pattern = "yyyy-mm-dd hh-mm-ss")
+	@Temporal(TemporalType.DATE)
+	private Date fechahorasalida;
 	
 }

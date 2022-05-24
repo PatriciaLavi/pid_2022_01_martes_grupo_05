@@ -14,12 +14,14 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.empresa.entity.Residente;
 import com.empresa.entity.visita;
 import com.empresa.entity.visitante;
 import com.empresa.service.visitaService;
@@ -33,8 +35,7 @@ public class visitaController {
 
 	@Autowired
 	private visitaService service;
-	@Autowired
-	private visitanteService visitanteservice;
+
 	
 	@GetMapping("/")
 	public String ListarVisita(Model model) {
@@ -43,32 +44,36 @@ public class visitaController {
 		model.addAttribute("titulo", "visitante");
 		model.addAttribute("visita", lista);
 		return "/views/visita/listar";
-	}
-
-	
+	}	
 
 	
 	@GetMapping("/registrar")
 	public String RegistrarVisitantes(Model model) {
 
-		visita visita = new visita();
-		List<visitante>listvisitante=visitanteservice.listarVisitante();
+	 visita visita = new visita();
+	 model.addAttribute("visita", visita);
 		
-		model.addAttribute("titulo", "Registrar Visitante");
-		model.addAttribute("visita", visita);
-		model.addAttribute("visitante", listvisitante);
-
 		return "/views/visita/registrar";
-	}
-
+	}	
 	@PostMapping("/save")
 	public String Guardar(@ModelAttribute visita obj) {
-		
-		obj.setHoraentrada(new Date());
-		obj.setHorasalida(new Date());
+		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
+		obj.setFechahoraentrada(fecha);
+		obj.setFechahorasalida(null);
 		service.insertaActualizaVistas(obj);
 		return "redirect:/views/visita/";
 	}
-	
 
+	@GetMapping("/edit/{id}")
+	public String editar(@PathVariable ("id") Integer idvisita ,Model model,@ModelAttribute visita obj) {
+		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
+		visita visita= service.buscarPorIdvisita(idvisita);
+		model.addAttribute("visita", visita);
+		obj.setFechahorasalida(fecha);
+		
+		return "/views/visita/registrar";
+	}
+	
 }

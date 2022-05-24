@@ -5,7 +5,6 @@
 <body>
 	<header th:replace="plantilla/plantilla :: header"></header>
 	<div class="container">
-		<h1>NO COLOCAR NADA</h1>
 	</div>
 
 	<!-- <div class="container"> -->
@@ -14,55 +13,40 @@
 			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
 			<div class="card-body">
 
-				<form th:action="@{/views/vista/save}" th:object="${visita}"
+				<form th:action="@{/views/visita/save}" th:object="${visita}"
 					method="post">
+<h1>Registro de Visitante</h1>
 
+						<input type="hidden" th:field="*{idvisita}"> 
+
+						<div class="form-group row">
+							<label class="col-md-2" for="idvisitante">Id Visitante:</label> <input type="text"
+								th:field="*{idvisitante}" class="form-control form-control-sm col-md-6"
+								id="iddepartamento" placeholder="Ingrese Id Visitante"> <small
+								class="form-text text-danger" th:if="${#fields.hasErrors('idvisitante')}"
+								th:errors="*{idvisitante}"> </small>
+						</div>
 
 					<div class="form-group row">
-						<input type="hidden" th:field="*{idvisita}"> <label
-							class="col-md-2" for="ciudad">Visitante:</label> <select
-							th:field="*{ciudad}"
-							class="form-control form-control-sm col-md-6" id="ciudad">
-							<option th:each="visitantes:${visitante}" th:value="${visitantes.idvisitante}"
-								th:text="${visitantes.nombre}" />
-						</select>
-					</div>
-					<div class="form-group row">
-						<label class="col-md-2" for="apellidos">Residente:</label> <input
-							type="text" th:field="*{apellidos}"
-							class="form-control form-control-sm col-md-6" id="apellidos"
-							placeholder="Apellidos del visitante"> <small
-							class="form-text text-danger"
-							th:if="${#fields.hasErrors('apellidos')}"
-							th:errors="*{apellidos}"> </small>
-					</div>
-<!--
-					<div class="form-group row">
-						<label class="col-md-2" for="dni">Dni</label> <input type="text"
-							th:field="*{dni}" class="form-control form-control-sm col-md-6"
-							id="dni" placeholder="dni del visitante"> <small
-							class="form-text text-danger" th:if="${#fields.hasErrors('dni')}"
-							th:errors="*{dni}"> </small>
-					</div>
-
-					 <div class="form-group row">
-						<label class="col-md-2" for="fechareg">Fecha Registro:</label> <input
-							type="text" th:field="*{fechareg}"
-							class="form-control form-control-sm col-md-6" id="fechareg"
-							placeholder="fechareg del cliente"> <small
-							class="form-text text-danger"
-							th:if="${#fields.hasErrors('fechareg')}" th:errors="*{fechareg}">
+						<label class="col-md-2" for="dni">Dni</label> <input type="text" th:field="*{dni}" required=""
+							pattern="[0-9]{8}" class="form-control form-control-sm col-md-6" id="dni"
+							placeholder="dni del residente"> <small class="form-text text-danger"
+							th:if="${#fields.hasErrors('dni')}" th:errors="*{dni}">
 						</small>
 					</div>
- -->
-					<!-- <div class="form-group row">
-						<label class="col-md-2" for="ciudad">Ciudad:</label> <select
-							th:field="*{ciudad}"
-							class="form-control form-control-sm col-md-6" id="ciudad">
-							<option th:each="ciudad:${ciudades}" th:value="${ciudad.id}"
-								th:text="${ciudad.ciudad}" />
-						</select>
-					</div> -->
+
+
+                           <div class="form-group row">
+							<label class="col-md-2" for="idResidente">Id Residente:</label> <input type="text"
+								th:field="*{idresidente}" class="form-control form-control-sm col-md-6"
+								id="idresidente" placeholder="Ingrese Id Residente"> <small
+								class="form-text text-danger" th:if="${#fields.hasErrors('idresidente')}"
+								th:errors="*{idresidente}"> </small>
+						</div>
+					<input type="hidden" th:field="*{fechahoraentrada}"> 
+					<input type="hidden" th:field="*{fechahorasalida}"> 
+					
+				
 
 					<div class="card-footer bg-dark">
 						<input type="submit" class="btn btn-primary btn-sm"

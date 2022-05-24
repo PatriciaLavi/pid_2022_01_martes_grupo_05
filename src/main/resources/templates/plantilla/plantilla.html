@@ -73,16 +73,17 @@
 									MANTENIMIENTO </a>
 								<ul class="dropdown-menu" aria-labelledby="offcanvasNavbarDropdown">
 
-									<li><a class="dropdown-item" th:href="@{/views/departamentos/}">DEPARTAMENTO</a></li>
+									<li><a class="dropdown-item" th:href="@{/views/departamentos/}">DEPARTAMENTO</a>
+									</li>
 									<li><a class="dropdown-item" th:href="@{/views/Propietario/}">PROPIETARIOS</a></li>
 									<li><a class="dropdown-item" th:href="@{/views/Residente/}">RESIDENTE</a></li>
 									<li><a class="dropdown-item" th:href="@{/views/Mascota/}">MASCOTA</a></li>
 
 								</ul>
 							</li>
-							
-							
-							
+
+
+
 							<li sec:authorize="hasRole('USER')" class="nav-item dropdown"><a
 									class="nav-link dropdown-toggle" href="#" id="offcanvasNavbarDropdown" role="button"
 									data-bs-toggle="dropdown" aria-expanded="false">
