@@ -9,6 +9,7 @@ public interface visitaService {
 	
 	
 	public visita insertaActualizaVistas(visita obj);
+	public visita ActualizaVistas(visita obj);
 	public List<visita> listarVisitas();
 	public visita buscarPorIdvisita(Integer id);
 	

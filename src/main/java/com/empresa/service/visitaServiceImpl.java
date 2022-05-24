@@ -30,6 +30,12 @@ public class visitaServiceImpl implements visitaService {
 		return repository.findById(id).orElse(null);
 	}
 
+	@Override
+	public visita ActualizaVistas(visita obj) {
+		// TODO Auto-generated method stub
+		return repository.save(obj);
+	}
+
 	
 
 
