@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.empresa.entity.Propietario;
 import com.empresa.entity.Residente;
-import com.empresa.entity.visitante;
+import com.empresa.entity.Visitante;
 import com.empresa.service.PropietarioService;
 import com.empresa.service.ResidenteService;
 
