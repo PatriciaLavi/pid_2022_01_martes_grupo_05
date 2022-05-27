@@ -22,24 +22,27 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.empresa.entity.Residente;
-import com.empresa.entity.visita;
-import com.empresa.entity.visitante;
-import com.empresa.service.visitaService;
-import com.empresa.service.visitanteService;
+import com.empresa.entity.Visita;
+import com.empresa.entity.Visitante;
+import com.empresa.service.VisitaService;
+import com.empresa.service.VisitanteService;
+
+import lombok.extern.apachecommons.CommonsLog;
 
 
 @Controller
 @RequestMapping("/views/visita")
-
+@CommonsLog
 public class visitaController {
 
 	@Autowired
-	private visitaService service;
+	private VisitaService service;
 
 	
 	@GetMapping("/")
 	public String ListarVisita(Model model) {
-		List<visita> lista = service.listarVisitas();
+		log.info("ListarVisita");
+		List<Visita> lista = service.listarVisitas();
 
 		model.addAttribute("titulo", "visitante");
 		model.addAttribute("visita", lista);
@@ -49,38 +52,34 @@ public class visitaController {
 	
 	@GetMapping("/registrar")
 	public String RegistrarVisitantes(Model model) {
-
-	 visita visita = new visita();
+		log.info("RegistrarVisitantes");
+	 Visita visita = new Visita();
 	 model.addAttribute("visita", visita);
 		
 		return "/views/visita/registrar";
 	}	
 	@PostMapping("/save")
-	public String Guardar(@ModelAttribute visita obj) {
-		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
-		obj.setFechahoraentrada(fecha);
-		obj.setFechahorasalida(null);
+	public String Guardar(@ModelAttribute Visita obj) {
+		log.info("Guardar");
+		obj.setFechahoraentrada(new Date());
 		service.insertaActualizaVistas(obj);
 		return "redirect:/views/visita/";
 	}
 
 	@GetMapping("/edit/{id}")
-	public String editar(@PathVariable ("id") Integer idvisita ,Model model,@ModelAttribute visita obj) {
-		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
-		obj.setFechahorasalida(fecha);
-		visita visita= service.buscarPorIdvisita(idvisita);
+	public String editar(@PathVariable ("id") Integer idvisita ,Model model,@ModelAttribute Visita obj) {
+		log.info("editar");
+		Visita visita= service.buscarPorIdvisita(idvisita);
 		model.addAttribute("visita", visita);
-		//a
 		return "/views/visita/actualizar";
 	}
 	@PostMapping("/update")
-	public String Terminarvisista(@ModelAttribute visita obj) {
-		DateTimeFormatter dtf4 = DateTimeFormatter.ofPattern("yyyy/MM/dd");
-		Date fecha = new Date(dtf4.format(LocalDateTime.now()));
-		obj.setFechahorasalida(fecha);
-		service.insertaActualizaVistas(obj);
+	public String Terminarvisista(@ModelAttribute Visita obj) {
+		log.info("Terminarvisista");
+		Visita visita= service.buscarPorIdvisita(obj.getIdvisita());
+		visita.setFechahorasalida(new Date());
+		visita.setComentario(obj.getComentario());
+		service.insertaActualizaVistas(visita);
 		return "redirect:/views/visita/";
 	}
 	

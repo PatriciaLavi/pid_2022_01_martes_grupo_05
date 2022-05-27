@@ -5,33 +5,33 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.empresa.entity.visita;
-import com.empresa.repository.visitaRepository;
+import com.empresa.entity.Visita;
+import com.empresa.repository.VisitaRepository;
 @Service
-public class visitaServiceImpl implements visitaService {
+public class VisitaServiceImpl implements VisitaService {
 
 	@Autowired
-	private visitaRepository repository;
+	private VisitaRepository repository;
 	@Override
-	public visita insertaActualizaVistas(visita obj) {
+	public Visita insertaActualizaVistas(Visita obj) {
 		// TODO Auto-generated method stub
 		return repository.save(obj);
 	}
 
 	@Override
-	public List<visita> listarVisitas() {
+	public List<Visita> listarVisitas() {
 		// TODO Auto-generated method stub
 		return repository.findAll();
 	}
 
 	@Override
-	public visita buscarPorIdvisita(Integer id) {
+	public Visita buscarPorIdvisita(Integer id) {
 		// TODO Auto-generated method stub
 		return repository.findById(id).orElse(null);
 	}
 
 	@Override
-	public visita ActualizaVistas(visita obj) {
+	public Visita ActualizaVistas(Visita obj) {
 		// TODO Auto-generated method stub
 		return repository.save(obj);
 	}

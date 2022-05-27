@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+
 <head th:replace="plantilla/plantilla :: head">
 </head>
+
 <body>
 	<header th:replace="plantilla/plantilla :: header"></header>
 	<div class="container">
@@ -9,48 +11,46 @@
 
 	<!-- <div class="container"> -->
 
-		<div class="card bg-light">
-			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
-			<div class="card-body">
+	<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+		<div class="card-body">
 
-				<form th:action="@{/views/visita/update}" th:object="${visita}"
-					method="post">
-<h1>Registro de Visitante</h1>
+			<form th:action="@{/views/visita/update}" th:object="${visita}" method="post">
+				<h1>Registro de Visitante</h1>
 
-						<input type="hidden" th:field="*{idvisita}"> 
-
-					
-						<input type="hidden" th:field="*{idvisitante}"> 
-						<input type="hidden" th:field="*{dni}"> 
-						<input type="hidden" th:field="*{idresidente}"> 
-
-					<div class="form-group row">
-						<label class="col-md-2" for="dni">Comentario</label> <input type="text" th:field="*{comentario}" required=""
-							pattern="[a-zA-Z]+" class="form-control form-control-sm col-md-6" id="comentario"
-							placeholder="Comentar aqui"> <small class="form-text text-danger"
-							th:if="${#fields.hasErrors('comentario')}" th:errors="*{comentario}">
-						</small>
-					</div>
+				<input type="hidden" th:field="*{idvisita}">
 
 
-                          
-					<input type="hidden" th:field="*{fechahoraentrada}"> 
-					<input type="hidden" th:field="*{fechahorasalida}"> 
-					
+				<input type="hidden" th:field="*{idvisitante}">
+				<input type="hidden" th:field="*{dni}">
+				<input type="hidden" th:field="*{idresidente}">
+
+				<div class="form-group row">
+					<label class="col-md-2" for="dni">Comentario</label> <input type="text" th:field="*{comentario}"
+						required="" pattern="[a-zA-Z]+" class="form-control form-control-sm col-md-6" id="comentario"
+						placeholder="Comentar aqui"> <small class="form-text text-danger"
+						th:if="${#fields.hasErrors('comentario')}" th:errors="*{comentario}">
+					</small>
+				</div>
+
+
+
 				
 
-					<div class="card-footer bg-dark">
-						<input type="submit" class="btn btn-primary btn-sm"
-							value="Guardar">
-					</div>
 
-				</form>
-			</div>
+
+				<div class="card-footer bg-dark">
+					<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+				</div>
+
+			</form>
 		</div>
+	</div>
 
 	</div>
 
 	<footer th:replace="plantilla/plantilla :: footer"></footer>
 
 </body>
+
 </html>
