@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -33,7 +34,7 @@ import lombok.extern.apachecommons.CommonsLog;
 @Controller
 @RequestMapping("/views/visita")
 @CommonsLog
-public class visitaController {
+public class VisitaController {
 
 	@Autowired
 	private VisitaService service;
@@ -43,13 +44,27 @@ public class visitaController {
 	public String ListarVisita(Model model) {
 		log.info("ListarVisita");
 		List<Visita> lista = service.listarVisitas();
-
 		model.addAttribute("titulo", "visitante");
 		model.addAttribute("visita", lista);
 		return "/views/visita/listar";
 	}	
 
 	
+	
+	@GetMapping("/consulta")
+	public String dnisform(Model model) {				
+		model.addAttribute("visita",new Visita());
+		return "/views/visita/consulta";
+	}	
+	@GetMapping("/dni")
+	public String BuscaVisitaporDni(@RequestParam String dni, Model model, 
+			@ModelAttribute ("visita")Visita obj) {	
+		List<Visita> lista = service.listarVisitas();
+		model.addAttribute("VisitasPorDni", service.BuscaVisitaporDni(dni));	
+		model.addAttribute("visita", lista);
+		return "redirect:/views/visita/";
+	}
+	//clase7
 	@GetMapping("/registrar")
 	public String RegistrarVisitantes(Model model) {
 		log.info("RegistrarVisitantes");

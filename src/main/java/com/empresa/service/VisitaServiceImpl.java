@@ -14,26 +14,32 @@ public class VisitaServiceImpl implements VisitaService {
 	private VisitaRepository repository;
 	@Override
 	public Visita insertaActualizaVistas(Visita obj) {
-		// TODO Auto-generated method stub
+	
 		return repository.save(obj);
 	}
 
 	@Override
 	public List<Visita> listarVisitas() {
-		// TODO Auto-generated method stub
+		
 		return repository.findAll();
 	}
 
 	@Override
 	public Visita buscarPorIdvisita(Integer id) {
-		// TODO Auto-generated method stub
+		
 		return repository.findById(id).orElse(null);
 	}
 
 	@Override
 	public Visita ActualizaVistas(Visita obj) {
-		// TODO Auto-generated method stub
+		
 		return repository.save(obj);
+	}
+
+	@Override
+	public List<Visita> BuscaVisitaporDni(String dni) {
+		
+		return repository.findByDni(dni);
 	}
 
 	

@@ -10,8 +10,11 @@ import com.empresa.entity.Visita;
 
 public interface VisitaRepository extends JpaRepository<Visita, Integer>{
 
-//public abstract List<visita> findByDni(String dni);
 	
+public List<Visita> findByDni(String dni);
 	
-	
+/*
+@Query("select v from Visita where v.dni like ?1")
+	public List<Visita>listaPorDni(String dni);
+	*/
 }
