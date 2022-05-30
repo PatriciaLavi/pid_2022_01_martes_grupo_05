@@ -12,6 +12,6 @@ public interface VisitaService {
 	public Visita ActualizaVistas(Visita obj);
 	public List<Visita> listarVisitas();
 	public Visita buscarPorIdvisita(Integer id);
-	
+	public List<Visita>BuscaVisitaporDni(String dni);
 	
 }
