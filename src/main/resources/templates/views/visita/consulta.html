@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/plantilla :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+
+		<!-- <div class="container"> -->
+
+		<div class="card bg-light">
+			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+			<div class="card-body">
+
+				<form th:action="@{/views/visita/dni}" th:object="${visita}" method="get">
+					<h1>Consultar Visitante</h1>
+					<input type="text" th:field="*{dni}" class="sr-only" />
+					<button type="submit" class="btn btn-primary mb-2">Buscar</button>
+
+				</form>
+				<br>
+				<table class="table">
+					<thead class="thead-dark">
+						<tr>
+
+							<th scope="col">ID Visita</th>
+							<th scope="col">ID Visitante</th>
+							<th scope="col">Dni</th>
+							<th scope="col">ID Residente</th>
+							<th scope="col">Entrada</th>
+							<th scope="col">Salida</th>
+							<th scope="col">Comentario</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="cl:${visitaLista}">
+							<td th:text="${cl.idvisita}"></td>
+							<td th:text="${cl.idvisitante}"></td>
+							<td th:text="${cl.dni}"></td>
+							<td th:text="${cl.idresidente}"></td>
+							<td th:text="${cl.frmFechaHoraEntrada}"></td>
+							<td th:text="${cl.frmFechaHoraSalida}"></td>
+							<td th:text="${cl.comentario}"></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+
+			<footer th:replace="plantilla/plantilla :: footer"></footer>
+
+</body>
+
+</html>
