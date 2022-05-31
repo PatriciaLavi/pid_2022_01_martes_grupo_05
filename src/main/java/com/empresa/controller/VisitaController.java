@@ -74,7 +74,11 @@ public class VisitaController {
 		return "/views/visita/registrar";
 	}	
 	@PostMapping("/save")
-	public String Guardar(@ModelAttribute Visita obj) {
+	public String Guardar(@ModelAttribute Visita obj, String dni, Model model) {	
+		if(service.existsByDni(dni)) {
+			model.addAttribute("dniRepetido","El dni ya existe");
+			return "/views/visita/registrar";
+		}		
 		log.info("Guardar");
 		obj.setFechahoraentrada(new Date());
 		service.insertaActualizaVistas(obj);

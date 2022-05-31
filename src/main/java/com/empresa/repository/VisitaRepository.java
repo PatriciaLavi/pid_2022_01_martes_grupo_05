@@ -12,6 +12,8 @@ public interface VisitaRepository extends JpaRepository<Visita, Integer>{
 
 	
 public List<Visita> findByDni(String dni);
+
+public boolean existsByDni(String dni);
 	
 /*
 @Query("select v from Visita where v.dni like ?1")

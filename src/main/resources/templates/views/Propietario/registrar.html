@@ -23,7 +23,7 @@
 							class="col-md-2" for="nombre">Nombres:</label> <input
 							type="text" th:field="*{nombre}"
 							required=""
-							pattern="[a-zA-Z]+"
+							pattern="[a-zA-Z\s]+"
 							class="form-control form-control-sm col-md-6" id="nombre"
 							placeholder="Nombres del visitante"> <small
 							class="form-text text-danger"
@@ -35,7 +35,7 @@
 						<label class="col-md-2" for="apellidos">Apellidos:</label> <input
 							type="text" th:field="*{apellidos}"
 							required=""
-							pattern="[a-zA-Z]+"
+							pattern="[a-zA-Z\s]+"
 							class="form-control form-control-sm col-md-6" id="apellidos"
 							placeholder="Apellidos del visitante"> <small
 							class="form-text text-danger"
@@ -47,7 +47,7 @@
 						<label class="col-md-2" for="dni">Dni</label> <input
 							type="text" th:field="*{dni}"
 							required=""
-							pattern="[0-9]{9}"
+							pattern="[0-9]{8}"
 							class="form-control form-control-sm col-md-6" id="dni"
 							placeholder="dni del visitante"> <small
 							class="form-text text-danger"

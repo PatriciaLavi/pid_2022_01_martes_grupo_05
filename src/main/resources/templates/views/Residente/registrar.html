@@ -23,6 +23,7 @@
 
 						<div class="form-group row">
 							<label class="col-md-2" for="iddepartamento">Id Departamento:</label> <input type="text"
+								required=""
 								th:field="*{iddepartamento}" class="form-control form-control-sm col-md-6"
 								id="iddepartamento" placeholder="Ingrese Id departamento"> <small
 								class="form-text text-danger" th:if="${#fields.hasErrors('iddepartamento')}"
@@ -31,7 +32,7 @@
 
 
 						<label class="col-md-2" for="nombre">Nombres:</label> <input type="text" th:field="*{nombre}"
-							required="" pattern="[a-zA-Z]+" class="form-control form-control-sm col-md-6" id="nombre"
+							required="" pattern="[a-zA-Z\s]+" class="form-control form-control-sm col-md-6" id="nombre"
 							placeholder="Nombres del residente"> <small class="form-text text-danger"
 							th:if="${#fields.hasErrors('nombre')}" th:errors="*{nombre}">
 						</small>
@@ -39,7 +40,7 @@
 
 					<div class="form-group row">
 						<label class="col-md-2" for="apellidos">Apellidos:</label> <input type="text"
-							th:field="*{apellidos}" required="" pattern="[a-zA-Z]+"
+							th:field="*{apellidos}" required="" pattern="[a-zA-Z\s]+"
 							class="form-control form-control-sm col-md-6" id="apellidos"
 							placeholder="Apellidos del residente"> <small class="form-text text-danger"
 							th:if="${#fields.hasErrors('apellidos')}" th:errors="*{apellidos}"> </small>
@@ -66,7 +67,7 @@
 
 
 					<div class="form-group row">
-						<label class="col-md-2" for="fechaNac">Fecha de Nacimiento</label> <input type="date"
+						<label class="col-md-2" for="fechaNac">Fecha de Nacimiento</label> <input type="date" required=""
 							th:field="*{fechaNac}" class="form-control form-control-sm col-md-6" id="fechaNac"
 							placeholder="fecha de nacimiento residente "> <small class="form-text text-danger"
 							th:if="${#fields.hasErrors('fechaNac')}" th:errors="*{fechaNac}">

@@ -6,6 +6,9 @@
 	<header th:replace="plantilla/plantilla :: header"></header>
 	<div class="container">
 	</div>
+	
+	<!-- MENSAJE DE ALERTA -->
+	<div class="alert alert-success text center" th:if="${dniRepetido != null}" th:text="${dniRepetido}"></div>
 
 	<!-- <div class="container"> -->
 
@@ -20,7 +23,7 @@
 						<input type="hidden" th:field="*{idvisita}"> 
 
 						<div class="form-group row">
-							<label class="col-md-2" for="idvisitante">Id Visitante:</label> <input type="text"
+							<label class="col-md-2" for="idvisitante">Id Visitante:</label> <input type="text" required=""
 								th:field="*{idvisitante}" class="form-control form-control-sm col-md-6"
 								id="iddepartamento" placeholder="Ingrese Id Visitante"> <small
 								class="form-text text-danger" th:if="${#fields.hasErrors('idvisitante')}"
@@ -37,7 +40,7 @@
 
 
                            <div class="form-group row">
-							<label class="col-md-2" for="idResidente">Id Residente:</label> <input type="text"
+							<label class="col-md-2" for="idResidente">Id Residente:</label> <input type="text" required=""
 								th:field="*{idresidente}" class="form-control form-control-sm col-md-6"
 								id="idresidente" placeholder="Ingrese Id Residente"> <small
 								class="form-text text-danger" th:if="${#fields.hasErrors('idresidente')}"

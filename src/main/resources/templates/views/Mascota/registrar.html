@@ -24,6 +24,7 @@
 						<label
 							class="col-md-2" for="idpropietario">IdPropietario:</label> <input
 							type="text" th:field="*{idpropietario}"
+							required=""
 							class="form-control form-control-sm col-md-6" id="idpropietario"
 							placeholder="Id del Propietario"> <small
 							class="form-text text-danger"
@@ -35,7 +36,7 @@
 							class="col-md-2" for="nombre">Nombre:</label> <input
 							type="text" th:field="*{nombre}"
 							required=""
-							pattern="[a-zA-Z]+"
+							pattern="[a-zA-Z\s]+"
 							class="form-control form-control-sm col-md-6" id="nombre"
 							placeholder="Nombres del mascota"> <small
 							class="form-text text-danger"
@@ -69,7 +70,7 @@
 						<label class="col-md-2" for="raza">Raza </label> <input
 							type="text" th:field="*{raza}"
 							required=""
-							pattern="[a-zA-Z]+"
+							pattern="[a-zA-Z\s]+"
 							class="form-control form-control-sm col-md-6" id="raza"
 							placeholder="Ingrese la Raza "> <small
 							class="form-text text-danger"
