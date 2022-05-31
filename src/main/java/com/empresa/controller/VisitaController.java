@@ -49,7 +49,17 @@ public class VisitaController {
 		return "/views/visita/listar";
 	}	
 
-	
+	@GetMapping("/consulta")
+	public String consultaVisitas(Model model) {
+		model.addAttribute("visita", new Visita());
+		return "/views/visita/consulta";
+	}	
+	@GetMapping("/dni")
+	public String buscarPorDNI(@RequestParam String dni, Model model, @ModelAttribute("visita") Visita visita) {
+		model.addAttribute("visitaLista", service.ListaPorDni(dni));
+		
+		return "/views/visita/consulta";
+	}
 	
 
 	@GetMapping("/registrar")
@@ -62,6 +72,19 @@ public class VisitaController {
 	}	
 	
 
+     @PostMapping("/save")
+	public String Guardar(@ModelAttribute Visita obj, String dni, Model model) {	
+		if(service.existsByDni(dni)) {
+			model.addAttribute("dniRepetido","El dni ya existe");
+			return "/views/visita/registrar";
+		}		
+		log.info("Guardar");
+		obj.setFechahoraentrada(new Date());
+		service.insertaActualizaVistas(obj);
+		return "redirect:/views/visita/";
+	}
+	
+	
 	@GetMapping("/edit/{id}")
 	public String editar(@PathVariable ("id") Integer idvisita ,Model model,@ModelAttribute Visita obj) {
 		log.info("editar");

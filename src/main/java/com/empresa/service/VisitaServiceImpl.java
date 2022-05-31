@@ -38,6 +38,21 @@ public class VisitaServiceImpl implements VisitaService {
 		return repository.save(obj);
 	}
 
+	@Override
+	public List<Visita> BuscaVisitaporDni(String dni) {
+
+		return repository.findByDni(dni);
+	}
+
+	@Override
+	public boolean existsByDni(String dni) {
+		return repository.existsByDni(dni);
+	}
+
+	@Override
+	public List<Visita> ListaPorDni(String dni) {
+		return repository.findByDni(dni);
+	}
 	
 
 }
