@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -31,6 +32,7 @@ public class Visita implements Serializable{
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idvisita;
 	private int idvisitante;
+	@Column(unique = true)
 	private String dni;
 	private int idresidente;
 	@Temporal(TemporalType.TIMESTAMP)

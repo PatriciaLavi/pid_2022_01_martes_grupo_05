@@ -42,8 +42,10 @@ public class VisitaServiceImpl implements VisitaService {
 		return repository.findByDni(dni);
 	}
 
-	
-
+	@Override
+	public boolean existsByDni(String dni) {
+		return repository.existsByDni(dni);
+	}	
 
 	
 

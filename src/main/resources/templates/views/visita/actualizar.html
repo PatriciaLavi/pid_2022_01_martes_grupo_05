@@ -27,7 +27,7 @@
 
 				<div class="form-group row">
 					<label class="col-md-2" for="dni">Comentario</label> <input type="text" th:field="*{comentario}"
-						required="" pattern="[a-zA-Z]+" class="form-control form-control-sm col-md-6" id="comentario"
+						required="" pattern="[a-zA-Z\s]+"  class="form-control form-control-sm col-md-6" id="comentario"
 						placeholder="Comentar aqui"> <small class="form-text text-danger"
 						th:if="${#fields.hasErrors('comentario')}" th:errors="*{comentario}">
 					</small>
