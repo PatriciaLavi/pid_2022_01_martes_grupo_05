@@ -21,7 +21,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-
+import java.util.ArrayList;
+import com.empresa.DTO.VisitaDTO;
 import com.empresa.entity.Residente;
 import com.empresa.entity.Visita;
 import com.empresa.entity.Visitante;
@@ -42,12 +43,27 @@ public class VisitaController {
 	
 	@GetMapping("/")
 	public String ListarVisita(Model model) {
-		log.info("ListarVisita");
-		List<Visita> lista = service.listarVisitas();
+		
+		List<Visita> lista = service.getVisita();
+		List<VisitaDTO> newslstVisita = new ArrayList<>();
+		for(Visita vs : lista)
+		{
+			VisitaDTO dto = new VisitaDTO();
+			dto.setIdvisita(vs.getIdvisita());
+			dto.setIdvisitante(vs.getIdvisitante().getNombre()+" "+vs.getIdvisitante().getApellidos());
+			dto.setDni(vs.getDni());
+			dto.setIdresidente(vs.getIdresidente().getNombre()+" "+vs.getIdresidente().getApellidos());
+			dto.setFrmFechaHoraEntrada(vs.getFrmFechaHoraEntrada());
+			dto.setFrmFechaHoraSalida(vs.getFrmFechaHoraSalida());
+			dto.setComentario(vs.getComentario());
+			newslstVisita.add(dto);
+			
+			
+		}
 		model.addAttribute("titulo", "visitante");
-		model.addAttribute("visita", lista);
+		model.addAttribute("visita", newslstVisita);
 		return "/views/visita/listar";
-	}	
+	}		
 
 	@GetMapping("/consulta")
 	public String consultaVisitas(Model model) {
