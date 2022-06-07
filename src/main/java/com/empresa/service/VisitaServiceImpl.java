@@ -55,4 +55,11 @@ public class VisitaServiceImpl implements VisitaService {
 	}
 	
 
+	@Override
+	public List<Visita> getVisita() {
+		// TODO Auto-generated method stub
+		return repository.findAll();
+	}
+	
+
 }

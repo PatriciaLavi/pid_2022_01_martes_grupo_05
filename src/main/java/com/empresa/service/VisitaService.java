@@ -15,5 +15,5 @@ public interface VisitaService {
 	public List<Visita>BuscaVisitaporDni(String dni);
 	public boolean existsByDni(String dni);
 	public List<Visita> ListaPorDni(String dni);
-	
+	List<Visita> getVisita();
 }
