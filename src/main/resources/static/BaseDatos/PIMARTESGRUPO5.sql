@@ -1,3 +1,4 @@
+drop database DBPIMartesGrupo5;
 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0;
 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,NO_ZERO_IN_DATE,NO_ZERO_DATE,ERROR_FOR_DIVISION_BY_ZERO,NO_ENGINE_SUBSTITUTION';
@@ -14,9 +15,11 @@ SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='ONLY_FULL_GROUP_BY,STRICT_TRANS_TABLES,N
 CREATE SCHEMA IF NOT EXISTS `DBPIMartesGrupo5` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci ;
 USE `DBPIMartesGrupo5` ;
 
+
 -- -----------------------------------------------------
 -- Table `DBPIMartesGrupo5`.`residente`
 -- -----------------------------------------------------
+
 CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`residente` (
   `idresidente` INT NOT NULL AUTO_INCREMENT,
   `iddepartamento` INT NULL DEFAULT NULL,
@@ -24,21 +27,15 @@ CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`residente` (
   `apellidos` VARCHAR(45) NOT NULL,
   `dni` INT NULL DEFAULT NULL,
   `correo` VARCHAR(45) NOT NULL,
-`idmascota` INT NOT NULL ,
   `telefono` INT NOT NULL ,
    `fechaNac` DATE NULL DEFAULT NULL,
   `fechaReg` DATE NULL DEFAULT NULL,
   `estado` TINYINT(1) NULL DEFAULT NULL,
   PRIMARY KEY (`idresidente`),
-
-    FOREIGN KEY (`iddepartamento`)
-    REFERENCES `DBPIMartesGrupo5`.`departamento` (`iddepartamento`),
-     FOREIGN KEY (`idmascota`)
-    REFERENCES `DBPIMartesGrupo5`.`mascota` (`idmascota`))
+FOREIGN KEY (`iddepartamento`)REFERENCES `DBPIMartesGrupo5`.`departamento` (`iddepartamento`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
-
 
 -- -----------------------------------------------------
 -- Table `DBPIMartesGrupo5`.`propietario`
@@ -66,7 +63,7 @@ COLLATE = utf8mb4_general_ci;
 CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`departamento` (
  `iddepartamento` INT NOT NULL AUTO_INCREMENT,
   `idpropietario` INT NULL DEFAULT NULL,
-  `numdepartamento` char(3) NULL DEFAULT NULL,
+  `numdepartamento` int NULL DEFAULT NULL,
   `habitaciones` INT NULL DEFAULT NULL,
   `area` double NULL DEFAULT NULL,
   `banos` INT NULL DEFAULT NULL,
@@ -75,11 +72,9 @@ CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`departamento` (
   PRIMARY KEY (`iddepartamento`),
   FOREIGN KEY (`idpropietario`)
     REFERENCES `DBPIMartesGrupo5`.`propietario` (`idpropietario`))
-
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
-
 
 -- -----------------------------------------------------
 -- Table `DBPIMartesGrupo5`.`servicio`
@@ -100,7 +95,6 @@ ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
 
-
 -- -----------------------------------------------------
 -- Table `DBPIMartesGrupo5`.`boleta`
 -- -----------------------------------------------------
@@ -108,10 +102,11 @@ CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`boleta` (
   `idboleta` INT NOT NULL AUTO_INCREMENT,
   `idservicio` INT NULL DEFAULT NULL,
   `idpropietario` INT NULL DEFAULT NULL,
-  `preciototal` DOUBLE NULL DEFAULT NULL,
+  `iduser` INT not null,
   `fechaEmision` DATE NULL DEFAULT NULL,
   `fechaVenc` DATE NULL DEFAULT NULL,
-  `estado` varchar(15) not NULL DEFAULT 'Pendiente',
+  `estado` varchar(15) not NULL,
+  `fechapago` DATETIME  not NULL,
   PRIMARY KEY (`idboleta`),
   INDEX `idservicio` (`idservicio` ASC) ,
   CONSTRAINT `boleta_ibfk_1`
@@ -119,10 +114,17 @@ CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`boleta` (
     REFERENCES `DBPIMartesGrupo5`.`servicio` (`idservicio`),
   CONSTRAINT `boleta_ibfk_2`
     FOREIGN KEY (`idpropietario`)
-    REFERENCES `DBPIMartesGrupo5`.`propietario` (`idpropietario`))
+    REFERENCES `DBPIMartesGrupo5`.`propietario` (`idpropietario`),
+     CONSTRAINT `fk2`
+    FOREIGN KEY (`iduser`)
+    REFERENCES `DBPIMartesGrupo5`.`users` (`id`)
+    ON DELETE NO ACTION
+    ON UPDATE NO ACTION)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
+
+
 
 
 -- -----------------------------------------------------
@@ -172,15 +174,16 @@ COLLATE = utf8mb4_general_ci;
 -- -----------------------------------------------------
 CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`mascota` (
   `idmascota` INT NOT NULL AUTO_INCREMENT,
-  
+  `idpropietario` INT NOT NULL,
   `nombre` VARCHAR(35) NULL DEFAULT NULL,
-   `edad` varchar(10) not null,
+  `edad` varchar(10) not null,
   `tipo` VARCHAR(40) not  null ,
   `raza` VARCHAR(40) not NULL,
   `vacunacion` VARCHAR(25) not NULL,
   `fechareg` DATE NULL DEFAULT NULL,
   `estado` TINYINT(1) NULL DEFAULT 1,
-  PRIMARY KEY (`idmascota`))
+  PRIMARY KEY (`idmascota`),
+  Foreign key (`idpropietario`) REFERENCES `DBPIMartesGrupo5`.`propietario` (`idpropietario`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
@@ -213,16 +216,16 @@ CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`visitante` (
   `idvisitante` INT NOT NULL AUTO_INCREMENT,
   `nombre` VARCHAR(35) NOT NULL,
   `apellidos` VARCHAR(45) NOT NULL,
-   `fechanac` date not NULL,
-  `dni` INT NOT NULL,
-   `correo` VARCHAR(45) NOT NULL,
-    `telefono` VARCHAR(45) NOT NULL,
-  `fechareg` DATETIME NULL DEFAULT NULL,
-  `activo` TINYINT(1) NULL DEFAULT NULL,
+  `dni` varchar(8) NOT NULL,
+  `correo` VARCHAR(45) NOT NULL,
+  `telefono` VARCHAR(9) NOT NULL,
+  `activo` varchar(10) NULL DEFAULT NULL,
   PRIMARY KEY (`idvisitante`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
+
+
 
 
 -- -----------------------------------------------------
@@ -231,10 +234,11 @@ COLLATE = utf8mb4_general_ci;
 CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`visita` (
   `idvisita` INT NOT NULL AUTO_INCREMENT,
   `idvisitante` INT NULL DEFAULT NULL,
-  `iddepartamento` INT NULL DEFAULT NULL,
+  `dni` varchar(8) not NULL ,
   `idresidente` INT NULL DEFAULT NULL,
-  `horaentrada` DATETIME NULL DEFAULT NULL,
-  `horasalida` DATETIME NULL,
+  `fechahoraentrada` DATETIME null,
+  `fechahorasalida` DATETIME NULL,
+  `comentario` varchar(50) NULL ,
   PRIMARY KEY (`idvisita`),
   INDEX `idresidente` (`idresidente` ASC)  ,
   INDEX `idvisitante` (`idvisitante` ASC)  ,
@@ -243,10 +247,7 @@ CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`visita` (
     REFERENCES `DBPIMartesGrupo5`.`residente` (`idresidente`),
   CONSTRAINT `visita_ibfk_2`
     FOREIGN KEY (`idvisitante`)
-    REFERENCES `DBPIMartesGrupo5`.`visitante` (`idvisitante`),
-    CONSTRAINT `visita_ibfk_3`
-    FOREIGN KEY (`iddepartamento`)
-    REFERENCES `DBPIMartesGrupo5`.`departamento` (`iddepartamento`))
+    REFERENCES `DBPIMartesGrupo5`.`visitante` (`idvisitante`))
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4
 COLLATE = utf8mb4_general_ci;
@@ -255,40 +256,7 @@ COLLATE = utf8mb4_general_ci;
 
 
 
-
-
-
-
-
-
 -- -----------------------------------------------------
--- Table `DBPIMartesGrupo5`.`pago`
--- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `DBPIMartesGrupo5`.`pago` (
-  `idpago` INT  not NULL,
-   `idboleta` INT  not NULL,
-  `iduser` INT not null,
-  `idresidente` INT not NULL,
-  `fechapago` DATETIME  not NULL,
-  PRIMARY KEY (`idpago`),
-  INDEX `fk2_idx` (`iduser` ASC) ,
-  INDEX `fk3_idx` (`idresidente` ASC) ,
-  CONSTRAINT `fk2`
-    FOREIGN KEY (`iduser`)
-    REFERENCES `DBPIMartesGrupo5`.`users` (`id`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-  CONSTRAINT `fk3`
-    FOREIGN KEY (`idresidente`)
-    REFERENCES `DBPIMartesGrupo5`.`residente` (`idresidente`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION,
-    CONSTRAINT `fk4`
-    FOREIGN KEY (`idboleta`)
-    REFERENCES `DBPIMartesGrupo5`.`boleta` (`idboleta`)
-    ON DELETE NO ACTION
-    ON UPDATE NO ACTION)
-ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
@@ -330,7 +298,6 @@ SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
 
 
 
-
 insert into users(id,username, password, enable) values(1,'admin','$2a$10$C/kXzIeCg7CIUMpgDL5P/OjHhS3XTZsCYd5aqYdTwdjMIgfleBQoG',1);
 insert into users(id,username, password, enable) values(2,'user','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
 insert into users(id,username, password, enable) values(3,'gerente','$2a$10$BZDSDkLnA3/U0vH9Lkjmg.fXvypyAGU.mUAvUDeA1CsiZ9QUZLyX2',1);
@@ -345,7 +312,12 @@ insert into roles(user_id, rolname) values(2, 'ROLE_USER');
 insert into roles(user_id, rolname) values(3, 'ROLE_GERENTE');
 insert into roles(user_id, rolname) values(3, 'ROLE_USER');
 insert into roles(user_id, rolname) values(4, 'ROLE_CAJERO');
-select * from users;
+
+select * from boleta;
+
+use dbpimartesgrupo5;
+
+#datetime YYYY-MM-DD MM:MM:SS
 
 SELECT r.user_id, r.rolname FROM roles r inner join users u 
 on r.user_id=u.id where u.username='admin';
@@ -355,11 +327,7 @@ insert into propietario values
 insert into propietario  values
 (null,"Juan Aron","Urbina Pacheco",56576734,"user2@gmail.com",956432356,"1997-04-03","2020-05-05",1);
 insert into propietario  values
-(null,"Marcela","Ricardo Palma",56576763,"user3@gmail.com",967687542,"1990-04-03","2020-07-05",1);
-insert into propietario  values
 (null,"Francisco","Mendoza Hinostroza",67434235,"user4@gmail.com",956574231,"1997-07-08","2022-05-05",1);
-insert into propietario  values
-(null,"Jose Carlos","Perez Rodriguez",65734234,"user5@gmail.com",963563255,"1979-04-02","2022-03-03",1);
 
 
 -- INSERT DEPARTAMENTO
@@ -370,24 +338,42 @@ insert into departamento values
 insert into departamento values
 (null,3,201,1,100,1,"2020-01-25",1);
 insert into departamento values
-(null,4,202,2,100,1,"2022-02-28",1);
+(null,2,202,2,100,1,"2022-02-28",1);
 insert into departamento values
-(null,5,301,3,240,3,"2021-06-13",1);
+(null,3,301,3,240,3,"2021-06-13",1);
 
-insert into mascota values(null,"DUBI","1 año","PERRO ","PITBULL","Vacunacion-InCompleta","1999-05-08",1);
-insert into mascota values(null,"BEEN","1 año","GATO ","GATO BENGALA","Vacunacion-Completa","1995-05-08",1);
-insert into mascota values(null,"MEYKI","2 años","GATO ","GATO PERSA","Vacunacion-InCompleta","1998-05-08",1);
-insert into mascota values(null,"FRAN","4 años","PERRO ","CHIHUAHUA","Vacunacion-Completa","2000-05-08",1);
 
-SELECT * FROM mascota;
+insert into mascota values(null,1,"DUBI","1 año","PERRO ","PITBULL","Vacunacion-InCompleta","1999-05-08",1);
+insert into mascota values(null,2,"BEEN","1 año","GATO ","GATO BENGALA","Vacunacion-Completa","1995-05-08",1);
+insert into mascota values(null,3,"MEYKI","2 años","GATO ","GATO PERSA","Vacunacion-InCompleta","1998-05-08",1);
 
+select * from mascota;
 insert into residente values
-(null,1,"Maritza Patricia","Lavi Tuanama",77865433,"user1@gmail.com",1,980598055,"1999-05-03","2020-05-05",1);
+(null,1,"Maritza Patricia","Lavi Tuanama","27786543","user1@gmail.com",980598055,"1999-05-03","2020-05-05",1);
 insert into residente values
-(null,2,"Juan Aron","Urbina Pacheco",56546742,"user2@gmail.com",1,990456789,"2000-04-03","2020-05-05",1);
+(null,2,"Juan Aron","Urbina Pacheco","56546742","user2@gmail.com",990456789,"2000-04-03","2020-05-05",1);
 insert into residente values
-(null,3,"Marcela","Ricardo Palma",04567465,"user3@gmail.com",4,975456852,"2001-04-03","2020-07-05",1);
-insert into residente values
-(null,4,"Francisco","Mendoza Hinostroza",74584854,"user4@gmail.com",3,982632145,"2002-05-08","2022-05-05",3);
+(null,3,"Francisco","Mendoza Hinostroza","4584854","user4@gmail.com",982632145,"2002-05-08","2022-05-05",3);
+SELECT * FROM visita;
 
-select*from propietario ;
+insert into visitante values
+(null,"Maritza Patricia","Lavi Tuanama","87654321","Patricia@gmail.com","987654321","Dentro");
+insert into visitante values
+(null,"Juan Aron","Urbina Pacheco","85654326","Juan@gmail.com","976879456","Dentro");
+insert into visitante values
+(null,"Francisco","Mendoza Hinostroza","86768732","Francisco@gmail.com","957788321","Fuera");
+
+insert into visita values
+(null,1,"87654321",1,current_timestamp(),current_timestamp(),null);
+insert into visita values
+(null,2,"56565321",2,current_timestamp(),current_timestamp(),null);
+insert into visita values
+(null,3,"76584325",3,current_timestamp(),current_timestamp(),null);
+
+ 
+insert into boleta values
+(null,1,1,1,current_timestamp(),current_timestamp(),'pagado',current_timestamp());
+insert into boleta values
+(null,2,2,1,current_timestamp(),current_timestamp(),'pendiente',current_timestamp());
+insert into boleta values
+(null,3,3,1,current_timestamp(),current_timestamp(),'pagado',current_timestamp());
