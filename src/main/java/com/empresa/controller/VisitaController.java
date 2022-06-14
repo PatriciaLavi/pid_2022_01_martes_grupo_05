@@ -1,17 +1,12 @@
 package com.empresa.controller;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+
 import java.util.Date;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,13 +14,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 import java.util.ArrayList;
+
+import com.empresa.DTO.NewVisitaDTO;
+import com.empresa.DTO.ResidenteDTO;
 import com.empresa.DTO.VisitaDTO;
+import com.empresa.DTO.VisitanteDTO;
 import com.empresa.entity.Residente;
 import com.empresa.entity.Visita;
 import com.empresa.entity.Visitante;
+import com.empresa.service.ResidenteService;
 import com.empresa.service.VisitaService;
 import com.empresa.service.VisitanteService;
 
@@ -39,10 +37,16 @@ public class VisitaController {
 
 	@Autowired
 	private VisitaService service;
+	@Autowired
+	private VisitanteService visitanteservice;
+	@Autowired
+	private ResidenteService residenteservice;
+	
 
 	
 	@GetMapping("/")
 	public String ListarVisita(Model model) {
+		
 		
 		List<Visita> lista = service.getVisita();
 		List<VisitaDTO> newslstVisita = new ArrayList<>();
@@ -56,6 +60,8 @@ public class VisitaController {
 			dto.setFrmFechaHoraEntrada(vs.getFrmFechaHoraEntrada());
 			dto.setFrmFechaHoraSalida(vs.getFrmFechaHoraSalida());
 			dto.setComentario(vs.getComentario());
+			dto.setEstado(vs.isEstado());
+			
 			newslstVisita.add(dto);
 			
 			
@@ -81,6 +87,26 @@ public class VisitaController {
 	@GetMapping("/registrar")
 	public String RegistrarVisitantes(Model model) {
 		log.info("RegistrarVisitantes");
+		List<Visitante> lista = visitanteservice.getVisitante();
+		List<VisitanteDTO> newslstVisitante = new ArrayList<>();
+		for(Visitante vst : lista)
+		{
+			VisitanteDTO dto = new VisitanteDTO();
+			dto.setIdvisitante(vst.getIdvisitante());
+			dto.setNombre(vst.getNombre()+" "+vst.getApellidos());
+			newslstVisitante.add(dto);	
+		}
+		List<Residente> lista2 = residenteservice.getResidente();
+		List<ResidenteDTO> newslstResidente = new ArrayList<>();
+		for(Residente rs : lista2)
+		{
+			ResidenteDTO dto2 = new ResidenteDTO();
+			dto2.setIdResidente(rs.getIdResidente());
+			dto2.setNombre(rs.getNombre()+" "+rs.getApellidos());
+			newslstResidente.add(dto2);	
+		}
+		model.addAttribute("visitantes", newslstVisitante);
+		model.addAttribute("Residentes", newslstResidente);
 	 Visita visita = new Visita();
 	 model.addAttribute("visita", visita);
 		
@@ -89,14 +115,27 @@ public class VisitaController {
 	
 
      @PostMapping("/save")
-	public String Guardar(@ModelAttribute Visita obj, String dni, Model model) {	
-		if(service.existsByDni(dni)) {
-			model.addAttribute("dniRepetido","El dni ya existe");
+	public String Guardar(@ModelAttribute Visita obj, String dni, Integer idvisitante, Model model, NewVisitaDTO body) {	
+		Visitante getvisitante = visitanteservice.getVisitanteId(body.getIdvisitante()).orElse(null);
+		Residente getResidente = residenteservice.getResidenteId(body.getIdresidente()).orElse(null);
+		Date nowDate = new Date();
+		if(body.getIdvisitante()==0) {
+			model.addAttribute("dniRepetido","No se encontro dni");
+		}else if(body.getIdresidente()==0) {
+			model.addAttribute("dniRepetido","No se encontro Residente");
+		}else if(!(service.getEstado(idvisitante)== null)) {
+			model.addAttribute("dniRepetido","XD");
+		}else if(service.existsByDni(dni)) {
+			model.addAttribute("dniRepetido","El visitante ya se encuentra en una visita");
 			return "/views/visita/registrar";
 		}		
 		log.info("Guardar");
-		obj.setFechahoraentrada(new Date());
-		service.insertaActualizaVistas(obj);
+		Visita newVisita = new Visita();
+		newVisita.setIdvisitante(getvisitante);
+		newVisita.setDni(body.getDni());
+		newVisita.setIdresidente(getResidente);
+		newVisita.setFechahoraentrada(nowDate);
+		service.insertaActualizaVistas(newVisita);
 		return "redirect:/views/visita/";
 	}
 	

@@ -1,7 +1,7 @@
 package com.empresa.service;
 
 import java.util.List;
-
+import java.util.Optional;
 
 import com.empresa.entity.Visita;
 
@@ -16,4 +16,5 @@ public interface VisitaService {
 	public boolean existsByDni(String dni);
 	public List<Visita> ListaPorDni(String dni);
 	List<Visita> getVisita();
+	List<Visita> getEstado(Integer id);
 }

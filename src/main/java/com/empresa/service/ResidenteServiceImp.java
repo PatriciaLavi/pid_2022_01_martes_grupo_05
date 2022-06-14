@@ -1,6 +1,8 @@
 package com.empresa.service;
 
 import java.util.List;
+import java.util.Optional;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import com.empresa.entity.Residente;
@@ -30,6 +32,17 @@ public class ResidenteServiceImp implements ResidenteService{
 	public void eliminar(Integer id) {
 		repository.deleteById(id);
 		
+	}
+
+	@Override
+	public Optional<Residente> getResidenteId(Integer id) {
+	
+		return repository.findById(id);
+	}
+
+	@Override
+	public List<Residente> getResidente() {
+		return repository.findAll();
 	}	
 	
 }

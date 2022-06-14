@@ -53,6 +53,7 @@ public class Visita implements Serializable{
 	private String frmFechaHoraEntrada;
 	@Transient
 	private String frmFechaHoraSalida;
+	private  boolean estado;
 	public String getFrmFechaHoraEntrada() {
 		if(fechahoraentrada==null) {
 			frmFechaHoraEntrada = "-";

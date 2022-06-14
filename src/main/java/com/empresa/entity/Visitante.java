@@ -34,7 +34,7 @@ public class Visitante implements Serializable{
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idvisitante;
+	private Integer idvisitante;
 	private String nombre;
 	private String apellidos;
 	private String dni;

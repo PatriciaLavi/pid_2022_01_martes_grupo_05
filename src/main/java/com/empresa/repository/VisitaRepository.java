@@ -1,6 +1,7 @@
 package com.empresa.repository;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -14,9 +15,8 @@ public interface VisitaRepository extends JpaRepository<Visita, Integer>{
 public List<Visita> findByDni(String dni);
 
 public boolean existsByDni(String dni);
-	
-/*
-@Query("select v from Visita where v.dni like ?1")
-	public List<Visita>listaPorDni(String dni);
-	*/
+
+@Query("Select v from Visita v where v.idvisitante= ?1 and v.estado=true")
+List<Visita> listaPorEstado(int id);
+
 }

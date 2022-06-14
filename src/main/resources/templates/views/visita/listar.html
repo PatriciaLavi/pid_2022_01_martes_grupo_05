@@ -35,6 +35,7 @@
 					<th scope="col">Entrada</th>
 					<th scope="col">Salida</th>
 					<th scope="col">Comentario</th>
+					<th scope="col">Estado</th>
 					<th scope="col">Editar </th>
 					<th scope="col">Eliminar</th>
 					
@@ -51,6 +52,7 @@
 					<td th:text="${cl.frmFechaHoraEntrada}"></td>
 					<td th:text="${cl.frmFechaHoraSalida}"></td>
 					<td th:text="${cl.comentario}"></td>
+					<td th:text="${cl.estado}"></td>
 					<td>
 						<a class="btn btn-success btn-sm" th:href="@{/views/visita/edit/} + ${cl.idvisita}"
 							th:text="'Editar'" title="Editar Visita">
