@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -18,7 +20,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Entity
-@Table(name = "departamento")
+@Table(name = "insidencia")
 @Getter
 @Setter
 @AllArgsConstructor
@@ -31,14 +33,21 @@ public class Incidencias {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idincidencia;
 	private int iduser;
-	private int idresidente;
+	
+	@ManyToOne
+	@JoinColumn(name = "idResidente")
+	private Residente idresidente;
+	
 	private String tipo;
 	private String  descripcion;
 	private String estado;
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
 	private Date fechareg;
-	private Date fechaate;
+	
+	@DateTimeFormat(pattern = "yyyy-MM-dd")
+	@Temporal(TemporalType.DATE)
+	private Date fechaatencion;
 	
 		
 	

@@ -10,17 +10,24 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.empresa.entity.Incidencias;
+import com.empresa.entity.Residente;
 import com.empresa.service.IncidenciasService;
+import com.empresa.service.ResidenteService;
 
 @Controller
-@RequestMapping("/views/incidencias")
+@RequestMapping("/views/incidencias/")
 public class IncidenciasController {
+	
 	@Autowired
 	private IncidenciasService incidenciasService;
+	@Autowired
+	private ResidenteService residenteservice;
 	
 	@GetMapping("/")
+	
 	public String listarDptos(Model model) {
 		List<Incidencias> listadoIncidencias = incidenciasService.listarInc();
 		
@@ -62,6 +69,12 @@ public class IncidenciasController {
 		System.out.println("Registro eliminado exitosamente");
 		
 		return "redirect:/views/incidencias/";
+	}
+	
+	@RequestMapping("/cargaResidente")
+	@ResponseBody
+	public List<Residente> listarResidentes(){
+		return residenteservice.listarResidentes();
 	}
 
 }

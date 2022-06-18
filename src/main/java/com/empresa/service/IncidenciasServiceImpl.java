@@ -22,8 +22,8 @@ public class IncidenciasServiceImpl implements IncidenciasService {
 	}
 
 	@Override
-	public void guardar(Incidencias inc) {
-		incRepository.save(inc);
+	public void guardar(Incidencias Inc) {
+		incRepository.save(Inc);
 		
 	}
 

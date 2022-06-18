@@ -2,7 +2,6 @@ package com.empresa.service;
 
 import java.util.List;
 
-import com.empresa.entity.Departamento;
 import com.empresa.entity.Incidencias;
 
 public interface IncidenciasService {
