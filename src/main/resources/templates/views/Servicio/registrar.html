@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/plantilla :: head">
+</head>
+
+<body background="/images/fondo.jpg">
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+
+	</div>
+
+
+	<div class="container">
+		<form th:action="@{/views/servicio/save}" th:object="${servicio}" method="post">
+			<div class="card-footer bg-dark">
+				<div class="container">
+					<h1 style="color:#FFFFFF;">Servicios</h1>
+				</div>
+				<div style="width: 30%;">
+					<label class="form-label" style="color:#FFFFFF;"> Departamento </label>
+					<select class="form-select" aria-label="Default select example" formControlName="iddepartamento"
+						th:field="*{iddepartamento}">
+						<option value="-1" selected>Seleccionar</option>
+						<option th:each="cl:${cboDepartamentos}" th:value=${cl.iddepartamento}
+							th:text="${cl.numdepartamento}" />        
+					</select>           
+				</div>
+				<div style="width: 30%;">
+					<label class="form-label" style="color:#FFFFFF;"> Servicios </label>
+					<select class="form-select" aria-label="Default select example" formControlName="idcomboservicio"
+						th:field="*{idcomboservicio}">
+						<option value="-1" selected>Seleccionar</option>
+						<option th:each="cl:${cboServicios}" th:value=${cl.IdComboservicio}
+							th:text="${cl.Nombreserv}" />
+						       
+					</select>           
+				</div>
+				<div style="width: 30%;">
+
+					<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+				</div>
+				<br>
+			</div>
+		</form>
+		
+		<table class="table table-dark">
+			<thead class="thead-dark">
+				<tr>
+					<th scope="col">ID</th>
+					<th scope="col">DEPARTAMENTO</th>
+					<th scope="col">SERVICIO</th>
+					<th scope="col">PRECIO</th>
+					<th scope="col">REGISTRO</th>
+					<th scope="col">ESTADO</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="cl:${lstservicio}">
+					<td th:text="${cl.idservicio}"></td>
+					<td th:text="${cl.iddepartamento}"></td>
+					<td th:text="${cl.idcomboservicio}"></td>
+					<td th:text="${cl.Precioserv}"></td>
+					<td th:text="${cl.fechareg}"></td>
+					<td th:text="${cl.estado}"></td>
+				</tr>
+			</tbody>
+		</table>
+
+
+	</div>
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+
+</body>
+
+</html>
