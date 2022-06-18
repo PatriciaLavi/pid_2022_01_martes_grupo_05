@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,13 +29,18 @@ public class Servicio {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idservicio;
-	private int iddepartamento;
-	private String nomservicio;
-	private double precio;
+	@ManyToOne
+	@JoinColumn(name = "iddepartamento")
+	private Departamento iddepartamento;
+	@ManyToOne
+	@JoinColumn(name = "idcomboservicio")
+	private ComboServicio idcomboservicio;
+	
+	private double Precioserv;
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	private Date fecharegistro;
+	private Date fechareg;
 	
-	private int estado;
+	private String estado;
 }
