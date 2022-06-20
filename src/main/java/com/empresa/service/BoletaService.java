@@ -8,3 +8,6 @@ public interface BoletaService {
 
 	public List<Boleta> listarBoleta();
 }
+
+
+
