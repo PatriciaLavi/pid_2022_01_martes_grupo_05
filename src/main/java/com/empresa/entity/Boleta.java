@@ -6,6 +6,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -27,19 +29,26 @@ import lombok.Setter;
 public class Boleta {	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int idboleta;
-	private int idservicio;
-	private int idpropietario;
-	private int idusuario;
+	private Integer idboleta;
+	
+	@ManyToOne
+	@JoinColumn(name = "idcomboservicio")
+	private ComboServicio idcomboservicio;
+	
+	
+	@ManyToOne
+	@JoinColumn(name = "idpropietario")
+	private Propietario idpropietario;
+	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	private Date fechaemision;
+	private Date fechaEmision;
 	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	@Temporal(TemporalType.DATE)
-	private Date fechavencimiento;
+	private Date fechaVenc;
 	
 	private String estado;
 	

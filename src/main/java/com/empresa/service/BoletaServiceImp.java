@@ -15,7 +15,7 @@ public class BoletaServiceImp implements BoletaService{
 
 	@Override
 	public List<Boleta> listarBoleta() {
-		
-		return null;
+	
+		return repository.findAll();
 	}
 }
