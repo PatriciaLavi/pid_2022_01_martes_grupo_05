@@ -35,13 +35,11 @@
 				<tr>
 					
 					<th scope="col">ID</th>
-					<th scope="col">ID USER</th>
-					<th scope="col">ID RESIDENTE</th>
+					<th scope="col">ID DEPARTAMENTO</th>
 					<th scope="col">TIPO</th>
-					<th scope="col">DESCRIPCION</th>
 					<th scope="col">ESTADO</th>
-					<th scope="col">FECHA DE REGISTRO</th>
-					<th scope="col">FECHA DE ATENCION</th>
+					<th scope="col">CAUSA</th>
+					<th scope="col">DESCRIPCIÓN</th>
 					<th scope="col"></th>
 					<th scope="col"></th>
 				
@@ -49,15 +47,12 @@
 			</thead>
 			<tbody>
 				<tr th:each="i:${incidencias}">
-					
 					<td th:text="${i.idincidencia}"></td>
-					<td th:text="${i.iduser}"></td>
-					<td th:text="${i.idresidente}"></td>
+					<td th:text="${i.iddepartamento}"></td>
 					<td th:text="${i.tipo}"></td>
-					<td th:text="${i.descripcion}"></td>
 					<td th:text="${i.estado}"></td>
-					<td th:text="${i.fechareg}"></td>		
-					<td th:text="${i.fechaatencion}"></td>  
+					<td th:text="${i.causa}"></td>
+					<td th:text="${i.descripcion}"></td> 
 					<td>
 						<a class="btn btn-success btn-sm" th:href="@{/views/incidencias/edit/} + ${i.idincidencia}"
 							th:text="'EDITAR'" title="Editar Registro">

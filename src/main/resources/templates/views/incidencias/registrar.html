@@ -22,36 +22,44 @@
 
 						<input type="hidden" th:field="*{idincidencia}"> 				
 						<label
-							class="col-md-2" for="iduser">ID USER:</label> <input
-							type="text" th:field="*{iduser}"
+							class="col-md-2" for="iddepartamento">ID DEPARTAMENTO:</label> <input
+							type="text" th:field="*{iddepartamento}"
 							required=""
 							pattern="[0-9]{1}"
-							class="form-control form-control-sm col-md-6" id="iduser"
+							class="form-control form-control-sm col-md-6" id="iddepartamento"
 							placeholder="Tipo de incidente"> <small
 							class="form-text text-danger"
-							th:if="${#fields.hasErrors('iduser')}" th:errors="*{iduser}">
+							th:if="${#fields.hasErrors('iddepartamento')}" th:errors="*{iddepartamento}">
 						</small>
 					</div>
-
-                    <div class="form-group row">
-						<label class="col-md-2" for="idresidente">ID RESIDENTE:</label> <input
-							<select id="inputState" th:field="*{idresidente}" class="form-select">
-						<option th:value=0>listarResidentes()</option>
-						
+                   
+                      <div class="form-group col-md-4">
+					<label for="inputState" class="form-label">TIPO</label> <br>
+					<select id="inputState" th:field="*{tipo}" class="form-select">
+						<option th:value=0>0</option>
+						<option th:value=1>1</option>
 					</select>
-					</div>
-
-
+				   </div>
+                   
+ 
+                    <div class="form-group col-md-4">
+					<label for="inputState" class="form-label">estado</label> <br>
+					<select id="inputState" th:field="*{estado}" class="form-select">
+						<option th:value=0>0</option>
+						<option th:value=1>1</option>
+					</select>
+				   </div>
+                    
 
 					<div class="form-group row">
-						<label class="col-md-2" for="tipo">TIPO:</label> <input
-							type="text" th:field="*{tipo}"
+						<label class="col-md-2" for="causa">CAUSA:</label> <input
+							type="text" th:field="*{causa}"
 							required=""
 							class="form-control form-control-sm col-md-6" id="tipo"
 							placeholder="Tipo de Incidente"> <small
 							class="form-text text-danger"
-							th:if="${#fields.hasErrors('tipo')}"
-							th:errors="*{tipo}"> </small>
+							th:if="${#fields.hasErrors('causa')}"
+							th:errors="*{causa}"> </small>
 					</div>
 					
 					<div class="form-group row">
@@ -64,42 +72,10 @@
 							th:if="${#fields.hasErrors('descripcion')}"
 							th:errors="*{descripcion}"> </small>
 					</div>
-                     
-                     <div class="form-group col-md-4">
-					<label for="inputState" class="form-label">estado</label> <br>
-					<select id="inputState" th:field="*{estado}" class="form-select">
-						<option th:value=0>0</option>
-						<option th:value=1>1</option>
-					</select>
-				   </div>
-				   
-				   
-                      <div class="form-group row">
-						<label class="col-md-2" for="fechareg">fechareg</label> <input
-							type="date" th:field="*{fechareg}"
-							required=""
-							class="form-control form-control-sm col-md-6" id="fechaNac"
-							placeholder="fecha de nacimiento residente "> <small
-							class="form-text text-danger"
-							th:if="${#fields.hasErrors('fechareg')}" th:errors="*{fechareg}">
-						</small>
-					</div>
-					
-					
-					 <div class="form-group row">
-						<label class="col-md-2" for="fechaatencion">fechaate</label> <input
-							type="date" th:field="*{fechaatencion}"
-							required=""
-							class="form-control form-control-sm col-md-6" id="fechaatencion"
-							placeholder="fecha de atencion "> <small
-							class="form-text text-danger"
-							th:if="${#fields.hasErrors('fechaatencion')}" th:errors="*{fechaatencion}">
-						</small>
-					</div>			
-					<div class="card-footer bg-dark">
-						<input type="submit" class="btn btn-primary btn-sm"
-							value="Guardar">
-					</div>
+                    
+                    <div class="card-footer bg-dark">
+					<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+				</div> 
 
 				</form>
 			</div>

@@ -32,25 +32,11 @@ public class Incidencias {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idincidencia;
-	private int iduser;
-	
-	@ManyToOne
-	@JoinColumn(name = "idResidente")
-	private Residente idresidente;
-	
+	private String iddepartamento;
 	private String tipo;
-	private String  descripcion;
 	private String estado;
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
-	private Date fechareg;
-	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
-	private Date fechaatencion;
-	
-		
-	
+	private String  causa;
+	private String  descripcion;
 
 	
 	

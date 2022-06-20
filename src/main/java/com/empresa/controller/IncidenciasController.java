@@ -49,6 +49,7 @@ public class IncidenciasController {
 		
 		incidenciasService.guardar(incidencias);
 		System.out.println("Incidencia guardada Exitosamente");
+		
 		return "redirect:/views/incidencias/";
 	}
 	
