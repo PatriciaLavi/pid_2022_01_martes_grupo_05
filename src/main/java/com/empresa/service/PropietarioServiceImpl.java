@@ -41,7 +41,17 @@ public class PropietarioServiceImpl implements  PropietarioService {
 	public void eliminar(Integer id) {
 		repository.deleteById(id);
 		
-		}	
+		}
+
+	@Override
+	public List<Propietario> getPropietario() {
+		return repository.findAll();
+	}
+
+	@Override
+	public Optional<Propietario> getPropiertarioxID(Integer id) {
+		return repository.findById(id);
+	}	
 
 
 

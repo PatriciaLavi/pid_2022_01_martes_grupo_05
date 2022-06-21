@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head th:replace="plantilla/plantilla :: head">
+</head>
+
+<body>
+	<header th:replace="plantilla/plantilla :: header"></header>
+	<div class="container">
+	</div>
+
+	<!-- <div class="container"> -->
+<!-- comentario -->
+	<div class="card bg-light">
+		<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
+		<div class="card-body">
+
+			<form th:action="@{/views/boleta/update}" th:object="${boleta}" method="post">
+				<input type="hidden" th:field="*{idboleta}">
+
+				<div class="form-group row">
+					<label class="col-md-2" for="dni">Confimar</label> 
+				</div>
+
+				<div class="card-footer bg-dark">
+					<input type="submit" class="btn btn-primary btn-sm" value="Guardar">
+				</div>
+
+			</form>
+		</div>
+	</div>
+
+	</div>
+
+	<footer th:replace="plantilla/plantilla :: footer"></footer>
+
+</body>
+
+</html>

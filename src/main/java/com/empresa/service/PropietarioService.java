@@ -13,6 +13,9 @@ public interface PropietarioService  {
     public abstract Propietario insertaActualizaPropietario(Propietario obj);
 	public Propietario buscarPorIdPropietario(Integer id);
 	public void eliminar (Integer id);
+	List<Propietario> getPropietario();
+	Optional<Propietario> getPropiertarioxID(Integer id);
 	
 
 }
+

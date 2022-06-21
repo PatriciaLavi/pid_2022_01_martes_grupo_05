@@ -18,4 +18,23 @@ public class BoletaServiceImp implements BoletaService{
 	
 		return repository.findAll();
 	}
+
+	@Override
+	public Boleta insertaActualizaBoleta(Boleta obj) {
+		return repository.save(obj);
+	}
+
+	@Override
+	public List<Boleta> getBoletaxServicioPropietarioDepartamento(int idcomboservicio, int idpropietario,
+			int iddepartamento) {
+		return repository.getBoletaxServicioPropietarioDepartamento(idcomboservicio, idpropietario, iddepartamento);
+	}
+
+	@Override
+	public Boleta getBoletaxId(Integer id) {
+		// TODO Auto-generated method stub
+		return repository.getById(id);
+	}
+
+	
 }
