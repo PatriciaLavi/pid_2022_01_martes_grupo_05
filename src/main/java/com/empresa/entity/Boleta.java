@@ -1,5 +1,7 @@
 package com.empresa.entity;
 
+import java.time.LocalDateTime;
+import java.util.Calendar;
 import java.util.Date;
 
 import javax.persistence.Entity;
@@ -35,10 +37,15 @@ public class Boleta {
 	@JoinColumn(name = "idcomboservicio")
 	private ComboServicio idcomboservicio;
 	
-	
+	private double Precioserv;
 	@ManyToOne
+	
 	@JoinColumn(name = "idpropietario")
 	private Propietario idpropietario;
+	
+	@ManyToOne
+	@JoinColumn(name = "iddepartamento")
+	private Departamento iddepartamento;
 	
 	
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -46,9 +53,8 @@ public class Boleta {
 	private Date fechaEmision;
 	
 	
-	@DateTimeFormat(pattern = "yyyy-MM-dd")
-	@Temporal(TemporalType.DATE)
-	private Date fechaVenc;
+	
+	private String fechaVenc;
 	
 	private String estado;
 	
