@@ -9,35 +9,27 @@
 	<div class="container">
 		<h1>Registro de Incidencias</h1>
 	</div>
-
-	<div class="container">
-
-		<div class="card bg-secondary">
-			<div class="card-header bg-dark text-white" th:text="${titulo}"></div>
-			<div class="card-body">
-
 				<form th:action="@{/views/incidencias/save}" th:object="${incidencias}"
 					method="post">
 					<div class="form-group row">
 
 						<input type="hidden" th:field="*{idincidencia}"> 				
-						<label
-							class="col-md-2" for="iddepartamento">ID DEPARTAMENTO:</label> <input
-							type="text" th:field="*{iddepartamento}"
-							required=""
-							pattern="[0-9]{1}"
-							class="form-control form-control-sm col-md-6" id="iddepartamento"
-							placeholder="Tipo de incidente"> <small
-							class="form-text text-danger"
-							th:if="${#fields.hasErrors('iddepartamento')}" th:errors="*{iddepartamento}">
-						</small>
+						<label class="form-label" style="color:#FFFFFF;"> Departamento </label>
+						<select class="form-select" aria-label="Default select example" formControlName="iddepartamento"
+							th:field="*{iddepartamento}">
+							<option value="-1" selected>Seleccionar</option>
+							<option th:each="cl:${cboDepartamento}" th:value=${cl.iddepartamento}
+								th:text="${cl.numdepartamento}" />        
+						</select>
+
 					</div>
                    
                       <div class="form-group col-md-4">
-					<label for="inputState" class="form-label">TIPO</label> <br>
+					<label for="inputState" class="form-label">Grado</label> <br>
 					<select id="inputState" th:field="*{tipo}" class="form-select">
-						<option th:value=0>0</option>
-						<option th:value=1>1</option>
+						<option th:value=BAJO>BAJO</option>
+						<option th:value=MEDIO>MEDIO</option>
+						<option th:value=ALTO>ALTO</option>
 					</select>
 				   </div>
                    
@@ -45,10 +37,11 @@
                     <div class="form-group col-md-4">
 					<label for="inputState" class="form-label">estado</label> <br>
 					<select id="inputState" th:field="*{estado}" class="form-select">
-						<option th:value=0>0</option>
-						<option th:value=1>1</option>
+						<option th:value=Activo>Activo</option>
+						<option th:value=Finalizado>Finalizado</option>
 					</select>
 				   </div>
+                    
                     
 
 					<div class="form-group row">

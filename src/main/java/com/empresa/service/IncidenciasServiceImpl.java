@@ -37,5 +37,11 @@ public class IncidenciasServiceImpl implements IncidenciasService {
 		incRepository.deleteById(id);
 		
 	}
+	
+	
+	@Override
+	public List<Incidencias> buscarPorDep(int iddepartamento) {		
+		return incRepository.buscarPorDep(iddepartamento);
+	}
 
 }
