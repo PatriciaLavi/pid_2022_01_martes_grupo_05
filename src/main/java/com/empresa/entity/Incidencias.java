@@ -32,7 +32,10 @@ public class Incidencias {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int idincidencia;
-	private String iddepartamento;
+	
+	@ManyToOne
+	@JoinColumn(name = "iddepartamento")
+	private Departamento iddepartamento;
 	private String tipo;
 	private String estado;
 	private String  causa;

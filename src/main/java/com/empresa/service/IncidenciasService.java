@@ -10,5 +10,6 @@ public interface IncidenciasService {
 	public void guardar(Incidencias Inc);
 	public Incidencias buscarPorId(Integer id);
 	public void eliminar (Integer id);
-
+	public List<Incidencias> buscarPorDep(int iddepartamento);
+	
 }

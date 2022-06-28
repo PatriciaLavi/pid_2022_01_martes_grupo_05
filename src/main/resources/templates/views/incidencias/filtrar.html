@@ -11,6 +11,36 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 		<h1 th:text="${titulo}"></h1>	
 	</div>
 	
+		<form th:action="@{/views/incidencias/listar}" th:object="${incidencias}" method="get">
+		<div class="alert alert-success text center" th:if="${mensaje != null}" th:text="${mensaje}"></div>
+			<div class="card-footer bg-dark">
+				<div class="container">
+					<h1 style="color:#FFFFFF;">Incidencias</h1>
+				</div>
+				<div class="row" style="margin-top: 2%">
+				<div class="col-lg-4">
+				
+						<label class="form-label" style="color:#FFFFFF;"> Departamento </label>
+						<select class="form-select" aria-label="Default select example" formControlName="iddepartamento"
+							th:field="*{iddepartamento}">
+							<option value="-1" selected>Seleccionar</option>
+							<option th:each="cl:${cboDepartamento}" th:value=${cl.iddepartamento}
+								th:text="${cl.numdepartamento}" />        
+		                </select>          
+					</div>
+
+					</div>
+				<div style="width: 30%;">
+
+					<button type="submit" class="btn btn-primary mb-2">Buscar</button>
+				</div>
+				<br>
+			</div>
+		</form>	
+	
+	
+	
+	
 	<div class="container">
 		<table class="table">
 			<thead class="thead-dark">
